@@ -1,5 +1,3 @@
-import arrow from '../../images/me.jpg';
-
 function Portfolio() {
   return (
     <section className="portfolio">
