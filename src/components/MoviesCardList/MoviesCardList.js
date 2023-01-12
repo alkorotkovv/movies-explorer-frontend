@@ -1,21 +1,14 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList() {
+function MoviesCardList(props) {
   return (
     <>
     <ul className="card-list">
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
+      { 
+        props.cards.map(element => 
+          <MoviesCard isLiked={false}/>
+        )
+      }
     </ul>
     <button class="card-list__button-more">Ещё</button>
     </>

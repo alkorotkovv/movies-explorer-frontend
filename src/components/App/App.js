@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer.js';
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
 import Movies from '../Movies/Movies.js';
+import SavedMovies from '../SavedMovies/SavedMovies.js';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <Switch>
         <Route path="/movies">
           <Movies />
+        </Route>
+        <Route path="/saved-movies">
+          <SavedMovies />
         </Route>
         <Route path="/">
           <Main />

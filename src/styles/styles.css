@@ -1260,6 +1260,7 @@
   display: flex;
   border: none;
   background-color: transparent;
+  outline: none;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.2;
@@ -1545,7 +1546,10 @@
   border: 1px solid lightgrey;
   justify-self: end;
   align-self: center;
+  background-color: #F9F9F9;
   background-image: url(../images/like.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   object-fit: cover;
   box-sizing: border-box;
   display: flex;
@@ -1553,6 +1557,9 @@
   font-size: 11px;
   line-height: 1.2;
   grid-area: like;
+}
+.card__like_active {
+  background-image: url(../images/like_active.svg);
 }
 @media (max-width: 1100px) {
   .card__like {
