@@ -10,6 +10,7 @@ $mainColor: rgb(256, 256, 256);
       "title title"
       "copy nav";
   background-color: transparent;
+  flex-shrink: 1;
 
   &__title {
     margin: 0 0 20px 0;

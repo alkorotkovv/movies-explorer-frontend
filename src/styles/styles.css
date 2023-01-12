@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import "../vendor/fonts/fonts.css";
 @import "../vendor/normalize.css";
 .page {
@@ -130,6 +131,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  flex: 1; /*для липкого футера*/
 }
 
 .promo {
@@ -1101,6 +1103,7 @@
   display: grid;
   grid-template-areas: "title title" "copy nav";
   background-color: transparent;
+  flex-shrink: 1;
 }
 .footer__title {
   margin: 0 0 20px 0;
@@ -1211,6 +1214,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  flex: 1; /*для липкого футера*/
 }
 
 .search-form {
@@ -1288,10 +1293,10 @@
   background-image: url(../images/search.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.3s linear;
 }
 .search-form__button:hover {
-  opacity: 0.8;
+  opacity: 0.7;
   cursor: pointer;
 }
 @media (max-width: 767px) {
@@ -1373,6 +1378,202 @@
   margin: 0;
   padding: 0 0 0 14px;
   box-sizing: border-box;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.46;
+}
+
+.card-list {
+  margin: 0;
+  padding: 70px 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+  row-gap: 30px;
+  list-style-type: none;
+}
+.card-list__button-more {
+  margin: 10px 0 90px 0;
+  padding: 11px 60px;
+  width: 320px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 10px;
+  border: 1px solid #E8E8E8;
+  transition: opacity 0.3s linear;
+}
+.card-list__button-more:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+@media (max-width: 1100px) {
+  .card-list__button-more {
+    font-size: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .card-list__button-more {
+    padding-top: 5px;
+    font-size: 28px;
+  }
+}
+@media (max-width: 470px) {
+  .card-list__button-more {
+    font-size: 26px;
+  }
+}
+@media (max-width: 380px) {
+  .card-list__button-more {
+    font-size: 22px;
+  }
+}
+
+.card {
+  margin: 0;
+  padding: 0;
+  width: 364px;
+  height: 271px;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.card__info {
+  margin: 0;
+  padding: 14px;
+  box-sizing: border-box;
+  display: grid;
+  gap: 9px;
+  grid-template-areas: "title like" "duration like";
+  background-color: transparent;
+}
+@media (max-width: 1100px) {
+  .card__info {
+    font-size: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .card__info {
+    padding-top: 5px;
+    font-size: 28px;
+  }
+}
+@media (max-width: 470px) {
+  .card__info {
+    font-size: 26px;
+  }
+}
+@media (max-width: 380px) {
+  .card__info {
+    font-size: 22px;
+  }
+}
+.card__title {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.2;
+  grid-area: title;
+}
+@media (max-width: 1100px) {
+  .card__title {
+    font-size: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .card__title {
+    padding-top: 5px;
+    font-size: 28px;
+  }
+}
+@media (max-width: 470px) {
+  .card__title {
+    font-size: 26px;
+  }
+}
+@media (max-width: 380px) {
+  .card__title {
+    font-size: 22px;
+  }
+}
+.card__duration {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  color: #A0A0A0;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.2;
+  grid-area: duration;
+}
+@media (max-width: 1100px) {
+  .card__duration {
+    font-size: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .card__duration {
+    padding-top: 5px;
+    font-size: 28px;
+  }
+}
+@media (max-width: 470px) {
+  .card__duration {
+    font-size: 26px;
+  }
+}
+@media (max-width: 380px) {
+  .card__duration {
+    font-size: 22px;
+  }
+}
+.card__like {
+  margin: 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid lightgrey;
+  justify-self: end;
+  align-self: center;
+  background-image: url(../images/like.svg);
+  object-fit: cover;
+  box-sizing: border-box;
+  display: flex;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.2;
+  grid-area: like;
+}
+@media (max-width: 1100px) {
+  .card__like {
+    font-size: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .card__like {
+    padding-top: 5px;
+    font-size: 28px;
+  }
+}
+@media (max-width: 470px) {
+  .card__like {
+    font-size: 26px;
+  }
+}
+@media (max-width: 380px) {
+  .card__like {
+    font-size: 22px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
