@@ -1,6 +1,13 @@
+@import "../vendor/fonts/fonts.css";
+@import "../vendor/normalize.css";
+
 @import "./components/App/App.scss";
 @import "./components/Header/Header.scss";
 @import "./components/Main/Main.scss";
 @import "./components/Promo/Promo.scss";
 @import "./components/NavTab/NavTab.scss";
 @import "./components/AboutProject/AboutProject.scss";
+@import "./components/Techs/Techs.scss";
+@import "./components/AboutMe/AboutMe.scss";
+@import "./components/Portfolio/Portfolio.scss";
+@import "./components/Footer/Footer.scss";
