@@ -26,15 +26,17 @@ function App() {
         </Route>
         <Route path="/movies">
           <Movies />
+          <Footer />
         </Route>
         <Route path="/saved-movies">
           <SavedMovies />
+          <Footer />
         </Route>
         <Route path="/">
           <Main />
+          <Footer />
         </Route>
       </Switch>
-      <Footer />
     </div>
   );
 }

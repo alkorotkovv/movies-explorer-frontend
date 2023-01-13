@@ -1,7 +1,8 @@
 .profile {
   margin: 0;
-  padding: 0;
+  padding: 74px 0;
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex: 1;  /*для липкого футера*/
   flex-direction: column;
