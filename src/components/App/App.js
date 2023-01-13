@@ -9,6 +9,7 @@ import Movies from '../Movies/Movies.js';
 import Profile from '../Profile/Profile.js';
 import Register from '../Register/Register.js';
 import SavedMovies from '../SavedMovies/SavedMovies.js';
+import Preloader from '../Preloader/Preloader.js';
 
 function App() {
   return (
