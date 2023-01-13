@@ -1,0 +1,167 @@
+.auth {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex: 1;  /*для липкого футера*/
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  margin: 0;
+  padding: 0;
+  width: 396px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: left;
+
+    @media (max-width: 1100px) {
+      & {
+        font-size: 32px;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      & {
+        padding-top: 5px;
+        font-size: 28px;
+      }
+    }
+    
+    @media (max-width: 470px) {
+      & {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      & {
+        font-size: 22px;
+      }
+    }
+
+
+  }
+
+  &__info {
+    width: 100%;
+    margin: 0;
+    padding: 40px 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__field {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #A0A0A0;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  &__input {
+    width: 100%;
+    margin: 0;
+    padding: 5px 0 10px 0;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+
+    &:focus {
+      outline: 0;
+      outline-offset: 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 1);
+    }
+
+  }
+
+  &__input-error {
+    width: 100%;
+    min-height: 26px;
+    margin: 0;
+    padding: 6px 0 0 0;
+    box-sizing: border-box;
+    color: red;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  &__save-button {
+    width: 100%;
+    height: 45px;
+    margin: 95px 0 16px 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: black;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    transition: opacity 0.2s linear;
+
+    &:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+  }
+
+  &__question {
+    margin: 0;
+    padding: 0;    
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.22;
+    transition: opacity 0.2s linear;
+    color: #A0A0A0;
+
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 767px) {
+      & {
+        font-size: 11px;
+      }
+    }
+    
+  }
+
+  &__link {
+    color: black;    
+  }
+
+}

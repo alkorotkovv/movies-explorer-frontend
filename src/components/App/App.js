@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer.js';
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
 import Movies from '../Movies/Movies.js';
+import Register from '../Register/Register.js';
 import SavedMovies from '../SavedMovies/SavedMovies.js';
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
     <div className="page">
       <Header />
       <Switch>
+        <Route path="/signup">
+          <Register />
+        </Route>
         <Route path="/movies">
           <Movies />
         </Route>
