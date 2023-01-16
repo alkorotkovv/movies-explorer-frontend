@@ -2,7 +2,7 @@ $mainColor: rgb(256, 256, 256);
 
 .footer {
   margin: 0;
-  padding: 0 70px 20px 70px;
+  padding: 79px 70px 20px 70px;
   width: 100%;
   box-sizing: border-box;
   display: grid;
@@ -11,6 +11,23 @@ $mainColor: rgb(256, 256, 256);
       "copy nav";
   background-color: transparent;
   flex-shrink: 1;
+
+  @media (max-width: 1100px) {
+    & {
+      padding: 79px 30px 20px 30px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    & {
+      padding: 79px 10px 20px 10px;
+      grid-template-areas:
+      "title"
+      "nav"
+      "copy";
+      justify-items: center;
+    }
+  }
 
   &__title {
     margin: 0 0 20px 0;
@@ -27,40 +44,40 @@ $mainColor: rgb(256, 256, 256);
 
     @media (max-width: 1100px) {
       & {
-        font-size: 32px;
+        font-size: 13px;
       }
     }
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
-        font-size: 28px;
+        margin-bottom: 30px;
+        font-size: 12px;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
-
   }
 
   &__copyright {
     margin: 0;
     padding: 0;
+    display: flex;
     font-weight: 400;
     font-size: 13px;
     line-height: 1.22;
     justify-self: start;
     grid-area: copy;
+
+    @media (max-width: 1100px) {
+      & {
+      }
+    }
+    
+    @media (max-width: 767px) {
+      & {
+        padding-top: 30px;
+        justify-self: center;
+      }
+    }
   }
 
   &__nav {
@@ -73,25 +90,18 @@ $mainColor: rgb(256, 256, 256);
   
     @media (max-width: 1100px) {
       & {
-        width: 50px;
-        height: 50px;
       }
     }
   
     @media (max-width: 767px) {
       & {
-        width: 40px;
-        height: 40px;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        justify-self: center;
       }
     }
-  
-    @media (max-width: 380px) {
-      & {
-        width: 35px;
-        height: 35px;
-      }
-    }
-  
+    
   }
 
   &__link {
@@ -99,7 +109,7 @@ $mainColor: rgb(256, 256, 256);
     padding: 0;
     color: black;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 13px;
     line-height: 1.22;
     transition: opacity 0.3s linear;
@@ -111,25 +121,14 @@ $mainColor: rgb(256, 256, 256);
   
     @media (max-width: 1100px) {
       & {
-        width: 50px;
-        height: 50px;
       }
     }
   
     @media (max-width: 767px) {
       & {
-        width: 40px;
-        height: 40px;
       }
     }
-  
-    @media (max-width: 380px) {
-      & {
-        width: 35px;
-        height: 35px;
-      }
-    }
-  
+    
   }
 
 }

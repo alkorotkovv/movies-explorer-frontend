@@ -1,10 +1,23 @@
 .portfolio {
   margin: 0;
   padding: 0 70px;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background-color: transparent;
+
+  @media (max-width: 1100px) {
+    & {
+      padding: 0 50px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    & {
+      padding: 0 18px;
+    }
+  }
 
   &__title {
     margin: 0;
@@ -19,30 +32,17 @@
 
     @media (max-width: 1100px) {
       & {
-        font-size: 32px;
+        padding-top: 90px;
       }
     }
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
-        font-size: 28px;
+        padding: 70px 0 40px 0;
+        font-size: 14px;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
-
   }
 
   &__items {
@@ -55,30 +55,16 @@
 
     @media (max-width: 1100px) {
       & {
-        font-size: 32px;
+        padding-bottom: 90px;
       }
     }
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
-        font-size: 28px;
+        padding-bottom: 50px;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
-
   }
 
   &__item {
@@ -90,29 +76,14 @@
 
     @media (max-width: 1100px) {
       & {
-        font-size: 32px;
       }
     }
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
-        font-size: 28px;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
 
   }
 
@@ -125,6 +96,7 @@
     font-weight: 400;
     font-size: 30px;
     line-height: 1.6;
+    letter-spacing: -0.04em;
     transition: opacity 0.3s linear;
 
     &:hover {
@@ -134,25 +106,16 @@
   
     @media (max-width: 1100px) {
       & {
-        width: 50px;
-        height: 50px;
+        font-size: 28px;
       }
     }
   
     @media (max-width: 767px) {
       & {
-        width: 40px;
-        height: 40px;
+        font-size: 18px;
       }
     }
-  
-    @media (max-width: 380px) {
-      & {
-        width: 35px;
-        height: 35px;
-      }
-    }
-  
+    
   }
 
 }

@@ -9,6 +9,22 @@
       "info photo";
   background-color: transparent;
 
+  @media (max-width: 1100px) {
+    & {
+      padding: 0 50px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    & {
+      padding: 0 18px;
+      grid-template-areas:
+      "title"
+      "photo"
+      "info";
+    }
+  }
+
   &__title {
     margin: 0 0 70px 0;
     padding: 110px 0 23px 0;
@@ -26,30 +42,19 @@
 
     @media (max-width: 1100px) {
       & {
-        font-size: 32px;
+        padding-top: 90px;
+        margin-bottom: 66px;
       }
     }
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
-        font-size: 28px;
+        padding: 70px 0 28px 0;
+        margin-bottom: 60px;
+        font-size: 18px;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
-
   }
 
   &__info {
@@ -64,30 +69,19 @@
 
     @media (max-width: 1100px) {
       & {
-        font-size: 32px;
+        max-width: 364px;
       }
     }
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
-        font-size: 28px;
+        margin-top: 40px;
+        max-width: none;
+        width: 100%;
+        justify-self: center;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
-
   }
 
   &__name {
@@ -103,30 +97,16 @@
 
     @media (max-width: 1100px) {
       & {
-        font-size: 32px;
+        font-size: 40px;
       }
     }
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
-        font-size: 28px;
+        font-size: 30px;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
-
   }
 
   &__job {
@@ -141,30 +121,18 @@
 
     @media (max-width: 1100px) {
       & {
-        font-size: 32px;
+        padding-top: 16px;
+        font-size: 12px;
       }
     }
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
-        font-size: 28px;
+        padding-top: 20px;
+        font-size: 11px;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
-
   }
 
   &__text {
@@ -179,30 +147,18 @@
 
     @media (max-width: 1100px) {
       & {
-        font-size: 32px;
+        padding-top: 20px;
+        font-size: 12px;
       }
     }
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
-        font-size: 28px;
+        padding-top: 20px;
+        font-size: 11px;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
-
   }
 
   &__link {
@@ -224,25 +180,15 @@
   
     @media (max-width: 1100px) {
       & {
-        width: 50px;
-        height: 50px;
       }
     }
   
     @media (max-width: 767px) {
       & {
-        width: 40px;
-        height: 40px;
+        margin-top: 40px;
       }
     }
-  
-    @media (max-width: 380px) {
-      & {
-        width: 35px;
-        height: 35px;
-      }
-    }
-  
+    
   }
 
   &__photo {
@@ -255,22 +201,16 @@
 
     @media (max-width: 1100px) {
       & {
-        width: 50px;
-        height: 50px;
+        width: 255px;
+        height: 307px;
       }
     }
 
     @media (max-width: 767px) {
       & {
-        width: 40px;
-        height: 40px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        width: 35px;
-        height: 35px;
+        width: 292px;
+        height: 352px;
+        justify-self: center;
       }
     }
 
