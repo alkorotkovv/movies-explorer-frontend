@@ -12,7 +12,7 @@ function MoviesCard(props) {
         <p className='card__duration'>1ч 47м</p>
         <button className={cardLikeButtonClassName}/>
       </div>
-      <img className="card___logo" src={cardLogo} alt="логотип"/>
+      <img className="card__logo" src={cardLogo} alt="логотип"/>
     </li>
   );
 }

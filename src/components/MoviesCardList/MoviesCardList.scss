@@ -1,5 +1,5 @@
 .card-list {
-  margin: 0;
+  margin: 69px 0 0 0;
   padding: 70px 0;
   width: 100%;
   box-sizing: border-box;
@@ -8,6 +8,22 @@
   column-gap: 24px;
   row-gap: 30px;
   list-style-type: none;
+  border-top: 1px solid #E8E8E8;
+
+  @media (max-width: 1300px) {
+    & {
+      margin-top: 109px;
+      width: auto;
+      grid-template-columns: repeat(2,1fr);
+      justify-items: center;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    & {
+      padding-top: 100px;
+    }
+  }
 
   &__button-more {
     margin: 10px 0 90px 0;

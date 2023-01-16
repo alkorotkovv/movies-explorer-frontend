@@ -4,6 +4,23 @@
   display: flex;
   align-items: center;
 
+  @media (max-width: 1300px) {
+    & {
+      padding-left: 30px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    & {
+      padding: 0;
+      margin: 0;
+      left: 50%;
+      top: 120px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+
+    }
+  }
 
   &__checkbox{
     margin: 0;
