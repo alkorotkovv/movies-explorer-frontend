@@ -17,13 +17,13 @@ $mainColor: rgb(256, 256, 256);
 
   @media (max-width: 1100px) {
     & {
-      padding: 18px 30px;
+      padding: 15px 30px;
     }
   }
 
   @media (max-width: 767px) {
     & {
-      padding: 18px 14px;
+      padding: 17px 14px;
     }
   }
 
@@ -153,24 +153,10 @@ $mainColor: rgb(256, 256, 256);
     
     @media (max-width: 767px) {
       & {
-        padding-top: 5px;
         font-size: 28px;
       }
     }
     
-    @media (max-width: 470px) {
-      & {
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      & {
-        font-size: 22px;
-      }
-    }
-
-
   }
 
   &__button {

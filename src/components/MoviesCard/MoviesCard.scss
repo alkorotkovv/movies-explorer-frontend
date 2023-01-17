@@ -16,6 +16,8 @@
   
   @media (max-width: 767px) {
     & {
+      width: 300px;
+      height: 236px;
     }
   }
 
@@ -130,18 +132,18 @@
   &__logo {
     margin: 0;
     padding: 0;
-    width: 364px;
+    width: 100%;
     height: 203px;
 
     @media (max-width: 1300px) {
       & {
-        width: 339px;
         height: 190px;
       }
     }
     
     @media (max-width: 767px) {
       & {
+        height: 168px;
       }
     }
     
