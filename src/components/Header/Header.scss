@@ -27,13 +27,20 @@ $mainColor: rgb(256, 256, 256);
     }
   }
 
-
   &_auth {
     width: 396px;
-    padding: 70px 0 40px 0;
+    padding: 232px 0 40px 0;
     grid-template-areas:
-    "logo burger";
-    grid-template-columns: auto auto;
+    "logo";
+    grid-template-columns: auto;
+
+    @media (max-width: 767px) {
+      & {
+        width: 260px;
+        justify-content: center;
+        padding: 56px 40px 50px 40px;
+      }
+    }
   }
 
   &__logo {

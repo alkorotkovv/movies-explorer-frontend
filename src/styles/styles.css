@@ -48,9 +48,16 @@
 }
 .header_auth {
   width: 396px;
-  padding: 70px 0 40px 0;
-  grid-template-areas: "logo burger";
-  grid-template-columns: auto auto;
+  padding: 232px 0 40px 0;
+  grid-template-areas: "logo";
+  grid-template-columns: auto;
+}
+@media (max-width: 767px) {
+  .header_auth {
+    width: 260px;
+    justify-content: center;
+    padding: 56px 40px 50px 40px;
+  }
 }
 .header__logo {
   width: 38px;
@@ -1380,8 +1387,18 @@
 .form_type_auth {
   width: 396px;
 }
+@media (max-width: 767px) {
+  .form_type_auth {
+    width: 260px;
+  }
+}
 .form_type_profile {
   width: 410px;
+}
+@media (max-width: 767px) {
+  .form_type_profile {
+    width: 260px;
+  }
 }
 .form__title {
   margin: 0;
@@ -1393,41 +1410,44 @@
   line-height: 1.2;
   text-align: left;
 }
+@media (max-width: 767px) {
+  .form__title {
+    text-align: center;
+  }
+}
 .form__title_type_profile {
   text-align: center;
 }
-@media (max-width: 1100px) {
-  .form__title {
-    font-size: 32px;
-  }
-}
-@media (max-width: 767px) {
-  .form__title {
-    padding-top: 5px;
-    font-size: 28px;
-  }
-}
-@media (max-width: 470px) {
-  .form__title {
-    font-size: 26px;
-  }
-}
-@media (max-width: 380px) {
-  .form__title {
-    font-size: 22px;
-  }
-}
 .form__info {
   width: 100%;
+  min-height: 212.4px;
   margin: 0;
   padding: 40px 0;
   border: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1; /*для липкого футера*/
+}
+@media (max-width: 767px) {
+  .form__info {
+    padding-top: 80px;
+  }
 }
 .form__info_type_profile {
   padding: 123px 0;
+  min-height: auto;
+}
+@media (max-width: 1100px) {
+  .form__info_type_profile {
+    padding: 96px 0;
+  }
+}
+@media (max-width: 767px) {
+  .form__info_type_profile {
+    padding: 80px 10px 0 10px;
+    flex: 1; /*для липкого футера*/
+  }
 }
 .form__field {
   width: 100%;
@@ -1526,6 +1546,11 @@
   opacity: 0.7;
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  .form__save-button {
+    margin-top: 180px;
+  }
+}
 .form__save-button_type_profile {
   width: auto;
   height: auto;
@@ -1535,6 +1560,17 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 1.2;
+}
+@media (max-width: 1100px) {
+  .form__save-button_type_profile {
+    margin-top: 114px;
+  }
+}
+@media (max-width: 767px) {
+  .form__save-button_type_profile {
+    margin-top: 340px;
+    font-size: 12px;
+  }
 }
 .form__question {
   margin: 0;
@@ -1553,7 +1589,7 @@
 }
 @media (max-width: 767px) {
   .form__question {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 .form__link {
@@ -1585,13 +1621,24 @@
 
 .profile {
   margin: 0;
-  padding: 74px 0;
+  padding: 74px 0 70px 0;
   width: 100%;
   box-sizing: border-box;
   display: flex;
   flex: 1; /*для липкого футера*/
   flex-direction: column;
   align-items: center;
+}
+@media (max-width: 1100px) {
+  .profile {
+    padding-top: 236px;
+  }
+}
+@media (max-width: 767px) {
+  .profile {
+    padding-top: 70px;
+    padding-bottom: 40px;
+  }
 }
 
 @keyframes preloader-inside-white {
