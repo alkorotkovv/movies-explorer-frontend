@@ -5,8 +5,8 @@ function SearchForm() {
   return (
     <form className="search-form">
       <img className="search-form__loupe" src={loupe} alt="лупа"/>
-      <input class="search-form__input" type="text" placeholder="Фильм"></input>
-      <button class="search-form__button" type="submit"></button>
+      <input className="search-form__input" type="text" placeholder="Фильм"></input>
+      <button className="search-form__button" type="submit"></button>
       <FilterCheckbox />
     </form>
   );

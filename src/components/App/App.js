@@ -10,11 +10,24 @@ import Profile from '../Profile/Profile.js';
 import Register from '../Register/Register.js';
 import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Preloader from '../Preloader/Preloader.js';
+import Menu from '../Menu/Menu.js';
 
 function App() {
+
+  const [isMenuVisible, setIsMenuVisible] = React.useState(false);
+
+  function handleOpenMenu() {
+    setIsMenuVisible(true);
+  }
+
+  function handleCloseMenu() {
+    setIsMenuVisible(false);
+  }
+
   return (
     <div className="page">
-      <Header />
+      <Header onOpenMenu={handleOpenMenu} />
+      <Menu isOpen ={isMenuVisible} onClose={handleCloseMenu} />
       <Switch>
         <Route path="/signup">
           <Register />

@@ -25,7 +25,7 @@ function Register(props) {
           </div>
         </fieldset>
         <button className="form__save-button" type="submit" >Зарегистрироваться</button>
-        <Link to="/signin" className="form__question">Уже зарегистрированы? <span class="form__link">Войти</span></Link>
+        <Link to="/signin" className="form__question">Уже зарегистрированы? <span className="form__link">Войти</span></Link>
       </Form>
     </main>
   )

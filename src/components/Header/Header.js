@@ -2,7 +2,11 @@ import { Link, useLocation } from 'react-router-dom';
 import headerLogo from '../../images/logo.svg';
 import burgerLogo from '../../images/burger.svg';
 
-function Header() {
+function Header(props) {
+ 
+  function handleBurgerClick() {
+    props.onOpenMenu();
+  }
 
   const location = useLocation();
   let block;
@@ -27,7 +31,7 @@ function Header() {
             </nav>
             <div className='header__buttons'>
               <Link to="/profile" className="header__button header__button_color_gray">Аккаунт</Link>
-              <img className="header__burger" src={burgerLogo} alt="бургер" />
+              <img className="header__burger" src={burgerLogo} alt="бургер" onClick={handleBurgerClick} />
           </div>
           </header>
         )
@@ -43,7 +47,7 @@ function Header() {
           </nav>
           <div className='header__buttons'>
             <Link to="/profile" className="header__button header__button_color_gray">Аккаунт</Link>
-            <img className="header__burger" src={burgerLogo} alt="бургер" />
+            <img className="header__burger" src={burgerLogo} alt="бургер" onClick={handleBurgerClick} />
         </div>
         </header>
       )

@@ -5,12 +5,12 @@ function MoviesCardList(props) {
     <>
     <ul className="card-list">
       { 
-        props.cards.map(element => 
-          <MoviesCard isLiked={false}/>
+        props.cards.map((element, index) => 
+          <MoviesCard key={index} isLiked={false}/>
         )
       }
     </ul>
-    <button class="card-list__button-more" type="submit" >Ещё</button>
+    <button className="card-list__button-more" type="submit" >Ещё</button>
     </>
   );
 }

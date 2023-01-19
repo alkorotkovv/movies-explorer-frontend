@@ -20,7 +20,7 @@ function Login(props) {
           </div>
         </fieldset>
         <button className="form__save-button" type="submit" >Войти</button>
-        <Link to="/signup" className="form__question">Ещё не зарегистрированы? <span class="form__link">Регистрация</span></Link>
+        <Link to="/signup" className="form__question">Ещё не зарегистрированы? <span className="form__link">Регистрация</span></Link>
       </Form>
     </main>
   )
