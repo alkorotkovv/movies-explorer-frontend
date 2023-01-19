@@ -17,14 +17,14 @@ function Header(props) {
     case "/signup":
       block = (
         <header className="header header_auth">
-          <Link to="/" className="header__logo"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
+          <Link to="/" className="header__link"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
         </header>
       )
       break;
     case "/profile":
         block = (
           <header className="header header_profile">
-            <Link to="/" className="header__logo"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
+            <Link to="/" className="header__link"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
             <nav className='header__navi'>
               <Link to="/movies" className="header__link header__link_active">Фильмы</Link>
               <Link to="/saved-movies" className="header__link">Сохранённые фильмы</Link>
@@ -40,7 +40,7 @@ function Header(props) {
     case "/saved-movies":
       block = (
         <header className="header header_profile">
-          <Link to="/" className="header__logo"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
+          <Link to="/" className="header__link"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
           <nav className='header__navi'>
             <Link to="/movies" className="header__link header__link_active">Фильмы</Link>
             <Link to="/saved-movies" className="header__link">Сохранённые фильмы</Link>
@@ -55,7 +55,7 @@ function Header(props) {
     default:
       block = (
         <header className="header">
-          <Link to="/" className="header__logo"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
+          <Link to="/" className="header__link"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
           <nav className='header__navi'>
             {/*<Link to="/movies" className="header__link header__link_active">Фильмы</Link>*/}
             {/*<Link to="/saved-movies" className="header__link">Сохранённые фильмы</Link>*/}

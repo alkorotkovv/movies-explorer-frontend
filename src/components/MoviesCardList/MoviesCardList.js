@@ -10,7 +10,7 @@ function MoviesCardList(props) {
         )
       }
     </ul>
-    <button className="card-list__button-more" type="submit" >Ещё</button>
+    <button className="movies__button-more" type="submit" >Ещё</button>
     </>
   );
 }

@@ -97,6 +97,7 @@ $mainColor: rgb(256, 256, 256);
   &__link {
     margin: 0;
     padding: 0;
+    display: flex;
     border: none;
     border-radius: 3px;
     box-sizing: border-box;
