@@ -48,9 +48,14 @@
 }
 .header_auth {
   width: 396px;
-  padding: 232px 0 40px 0;
+  padding: 70px 0 40px 0;
   grid-template-areas: "logo";
   grid-template-columns: auto;
+}
+@media (max-width: 1100px) {
+  .header_auth {
+    padding-top: 232px;
+  }
 }
 @media (max-width: 767px) {
   .header_auth {
@@ -1032,13 +1037,13 @@
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 19px;
 }
 .portfolio__link {
   margin: 0;
-  padding-bottom: 19px;
   text-decoration: none;
   color: black;
-  border-bottom: 1px solid #E8E8E8;
   font-weight: 400;
   font-size: 30px;
   line-height: 1.6;
@@ -1232,7 +1237,7 @@
 .search-form__button {
   width: 34px;
   height: 34px;
-  margin: 0;
+  margin: 0 30px 0 0;
   padding: 0;
   box-sizing: border-box;
   border: none;
@@ -1245,6 +1250,16 @@
 .search-form__button:hover {
   opacity: 0.7;
   cursor: pointer;
+}
+@media (max-width: 1300px) {
+  .search-form__button {
+    margin-right: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .search-form__button {
+    margin-right: 0;
+  }
 }
 .search-form__button_disabled {
   background-color: transparent;
@@ -1260,14 +1275,16 @@
 }
 
 .switch {
+  height: 34px;
   margin: 0;
-  padding: 0 0 0 60px;
+  padding: 0 0 0 30px;
   display: flex;
   align-items: center;
+  border-left: 1px solid #E8E8E8;
 }
 @media (max-width: 1300px) {
   .switch {
-    padding-left: 30px;
+    padding-left: 15px;
   }
 }
 @media (max-width: 767px) {
@@ -1275,9 +1292,10 @@
     padding: 0;
     margin: 0;
     left: 50%;
-    top: 120px;
+    top: 125px;
     position: absolute;
     transform: translate(-50%, -50%);
+    border: none;
   }
 }
 .switch__checkbox {
@@ -1444,6 +1462,7 @@
   height: 32px;
   border-radius: 50%;
   border: 1px solid lightgrey;
+  border: none;
   justify-self: end;
   align-self: center;
   background-color: #F9F9F9;
@@ -1492,6 +1511,7 @@
 @media (max-width: 767px) {
   .form_type_auth {
     width: 260px;
+    flex: content;
   }
 }
 .form_type_profile {
@@ -1635,6 +1655,7 @@
   margin: 95px 0 16px 0;
   padding: 0;
   box-sizing: border-box;
+  border: none;
   border-radius: 3px;
   background-color: black;
   color: white;
@@ -1650,7 +1671,7 @@
 }
 @media (max-width: 767px) {
   .form__save-button {
-    margin-top: 180px;
+    margin-top: auto;
   }
 }
 .form__save-button_type_profile {
@@ -1703,20 +1724,22 @@
 
 .register {
   margin: 0;
-  padding: 0;
+  padding: 0 0 30px 0;
   width: 100%;
   display: flex;
-  flex: 1; /*для липкого футера*/
+  box-sizing: border-box;
+  flex: 1;
   flex-direction: column;
   align-items: center;
 }
 
 .login {
   margin: 0;
-  padding: 0;
+  padding: 0 0 30px 0;
   width: 100%;
   display: flex;
-  flex: 1; /*для липкого футера*/
+  box-sizing: border-box;
+  flex: 1;
   flex-direction: column;
   align-items: center;
 }

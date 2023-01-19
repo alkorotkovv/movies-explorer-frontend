@@ -57,13 +57,13 @@ function Header(props) {
         <header className="header">
           <Link to="/" className="header__logo"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
           <nav className='header__navi'>
-            <Link to="/movies" className="header__link header__link_active">Фильмы</Link>
-            <Link to="/saved-movies" className="header__link">Сохранённые фильмы</Link>
+            {/*<Link to="/movies" className="header__link header__link_active">Фильмы</Link>*/}
+            {/*<Link to="/saved-movies" className="header__link">Сохранённые фильмы</Link>*/}
           </nav>
           <div className='header__buttons'>
             <Link to="/signup" className="header__button">Регистрация</Link>
             <Link to="/signin" className="header__button header__button_color_black">Войти</Link>
-            <Link to="/profile" className="header__button header__button_color_gray">Аккаунт</Link>
+            {/*<Link to="/profile" className="header__button header__button_color_gray">Аккаунт</Link>*/}
           </div>
           
         </header>

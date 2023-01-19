@@ -18,6 +18,7 @@
     @media (max-width: 767px) {
       & {
         width: 260px;
+        flex: content;
       }
     }
 
@@ -200,6 +201,7 @@
     margin: 95px 0 16px 0;
     padding: 0;
     box-sizing: border-box;
+    border: none;
     border-radius: 3px;
     background-color: black;
     color: white;
@@ -221,7 +223,8 @@
     
     @media (max-width: 767px) {
       & {
-        margin-top: 180px;
+        //margin-top: 180px;
+        margin-top: auto;
       }
     }
 
