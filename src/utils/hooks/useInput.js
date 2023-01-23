@@ -11,8 +11,8 @@ function useInput() {
     setValue(evt.target.value);
     setIsValid(evt.target.validity.valid);
     if (!evt.target.validity.valid)
-      //setMessage(evt.target.validationMessage)
-      setMessage("Некорректно заполнено поле")
+      setMessage(evt.target.validationMessage)
+      //setMessage("Некорректно заполнено поле")
     else
       setMessage("")
   }

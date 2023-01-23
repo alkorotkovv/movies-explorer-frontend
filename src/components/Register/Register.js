@@ -11,8 +11,8 @@ function Register(props) {
   const inputPassword = useInput();
 
   React.useEffect(() => {
-    setIsValid(inputEmail.isValid && inputEmail.isValid && inputPassword.isValid);
-  }, [inputEmail.isValid, inputEmail.isValid, inputPassword.isValid]);
+    setIsValid(inputName.isValid && inputEmail.isValid && inputPassword.isValid);
+  }, [inputName.isValid, inputEmail.isValid, inputPassword.isValid]);
 
 
   return (
@@ -62,7 +62,7 @@ function Register(props) {
               name="password" 
               placeholder="Пароль" 
               required 
-              minLength="2" 
+              minLength="5" 
               maxLength="200"/>
             <span className="form__span" >{inputPassword.message}</span>
           </div>
