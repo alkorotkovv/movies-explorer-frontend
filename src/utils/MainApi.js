@@ -47,12 +47,17 @@ class MainApi {
     .then(res => this._checkResult(res));
   }; 
 
-
-
-
-
-
-
+  //Метод проверки токена пользователя
+  getUserByToken(token) {
+    return fetch(this._baseUrl + '/users/me', {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization" : `Bearer ${token}`
+    }
+    })
+    .then(res => this._checkResult(res));
+  }; 
 
 
 

@@ -13,14 +13,58 @@ import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Preloader from '../Preloader/Preloader.js';
 import Menu from '../Menu/Menu.js';
 import InfoTooltip from '../InfoToolTip/InfoTooltip.js';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 
 function App() {
 
   const history = useHistory();
+  const [currentUser, setCurrentUser] = React.useState({name: "", email: ""});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const [tooltip, setTooltip] = React.useState({error: "номер ошибки", text: "текст ошибки"});
+
+  
+  React.useEffect(() => {
+    if (loggedIn) {
+      api.getUserByToken(localStorage.getItem('token'))
+      .then((res) => {
+        const {_id, name, email} = res.data;
+        setCurrentUser({name, email});
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+  }, [loggedIn])
+  
+
+  React.useEffect(() => {
+    checkToken();
+  }, [])
+
+  function checkToken() {
+    if (localStorage.getItem('token')) {
+      api.getUserByToken(localStorage.getItem('token'))
+        .then(res => {
+          console.log(res)
+          if (res.data) {
+            const {_id, name, email} = res.data;
+            setLoggedIn(true);
+            setCurrentUser({name, email});
+            history.push("/movies");
+          }
+          else {
+            history.push("/signin");
+          }
+        })
+        .catch((err) => {
+          err.then((data) => {
+            console.log(data);
+          })
+        })  
+    }
+  }
 
   function handleOpenMenu() {
     setIsMenuVisible(true);
@@ -68,7 +112,6 @@ function App() {
         console.log(res);
         if (res.token) {
           localStorage.setItem('token', res.token);
-          //setEmail(email);
           setTimeout(() => {
             setLoggedIn(true);
             history.push("/movies");
@@ -102,15 +145,26 @@ function App() {
         <Route path="/signin">
           <Login onSubmit={handleLoginSubmit}/>
         </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
+        <ProtectedRoute
+            path="/profile"
+            loggedIn={loggedIn}
+            component={Profile}
+            user = {currentUser}
+        />
         <Route path="/movies">
-          <Movies />
+          <ProtectedRoute
+            path="/movies"
+            loggedIn={loggedIn}
+            component={Movies}
+          />
           <Footer />
         </Route>
         <Route path="/saved-movies">
-          <SavedMovies />
+          <ProtectedRoute
+            path="/saved-movies"
+            loggedIn={loggedIn}
+            component={SavedMovies}
+          />
           <Footer />
         </Route>
         <Route path="/">
