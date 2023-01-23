@@ -14,10 +14,11 @@ function Register(props) {
     setIsValid(inputName.isValid && inputEmail.isValid && inputPassword.isValid);
   }, [inputName.isValid, inputEmail.isValid, inputPassword.isValid]);
 
+  
 
   return (
     <main className="register">
-      <Form type="auth" name="register" >
+      <Form type="auth" name="register" onSubmit={props.onSubmit} inName={inputName.value} inEmail={inputEmail.value} inPassword={inputPassword.value}>
         <h2 className="form__title form__title_type_auth">Добро пожаловать!</h2>
         <fieldset className="form__info">
           <div className="form__field">

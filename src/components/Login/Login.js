@@ -15,7 +15,7 @@ function Login(props) {
 
   return (
     <main className="login">
-      <Form type="auth" name="login" >
+      <Form type="auth" name="login" onSubmit={props.onSubmit} inEmail={inputEmail.value} inPassword={inputPassword.value} >
         <h2 className="form__title form__title_type_auth">Рады видеть!</h2>
         <fieldset className="form__info">
           <div className="form__field">
