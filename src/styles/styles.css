@@ -240,6 +240,9 @@
     height: 40px;
   }
 }
+.header__burger_unvisible {
+  display: none;
+}
 
 .menu {
   margin: 0;

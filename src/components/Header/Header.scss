@@ -260,6 +260,10 @@ $mainColor: rgb(256, 256, 256);
       }
     }
 
+    &_unvisible {
+      display: none;
+    }
+
   }
   
 

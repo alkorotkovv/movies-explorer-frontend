@@ -64,6 +64,7 @@ function Header(props) {
             <Link to="/signup" className={"header__button" + (props.loggedIn? " header__button_unvisible" : "")}>Регистрация</Link>
             <Link to="/signin" className={"header__button" + (props.loggedIn? " header__button_unvisible" : "") + " header__button_color_black"}>Войти</Link>
             <Link to="/profile" className={"header__button"  + (props.loggedIn? "" : " header__button_unvisible") + " header__button_color_gray"}>Аккаунт</Link>
+            <img className={"header__burger" + (props.loggedIn? "" : " header__burger_unvisible")} src={burgerLogo} alt="бургер" onClick={handleBurgerClick} />
           </div>          
         </header>
       )
