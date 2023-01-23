@@ -1754,6 +1754,14 @@
     font-size: 12px;
   }
 }
+.form__save-button_type_profile_disabled {
+  color: #C2C2C2;
+}
+.form__save-button_type_profile:hover {
+  color: #C2C2C2;
+  opacity: 1;
+  cursor: default;
+}
 .form__question {
   margin: 0;
   padding: 0;

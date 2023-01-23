@@ -6,10 +6,14 @@ import CurrentUserContext from '../../context/CurrentUserContext.js';
 
 function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  console.log(currentUser)
 
+  const [isValid, setIsValid] = React.useState(true);
   const inputName = useInput(currentUser.name);
   const inputEmail = useInput(currentUser.email);
+
+  React.useEffect(() => {
+    setIsValid(inputEmail.isValid && inputName.isValid);
+  }, [inputEmail.isValid, inputName.isValid]);
 
   function handleClick() {
     props.onExit();
@@ -41,7 +45,7 @@ function Profile(props) {
             <input 
               className="form__input form__input_type_profile form__input_content_email" 
               id="input-email" 
-              type="text" 
+              type="email" 
               value={inputEmail.value} 
               onChange={inputEmail.handleChange}
               name="email" 
@@ -49,10 +53,10 @@ function Profile(props) {
               required 
               minLength="2" 
               maxLength="40"/>
-            <span className="form__span form__span_type_profile" ></span>
+            <span className="form__span form__span_type_profile" >{inputEmail.message}</span>
           </div>
         </fieldset>
-        <button className="form__save-button form__save-button_type_profile" type="submit" >Редактировать</button>
+        <button className={"form__save-button form__save-button_type_profile" + (isValid ? "" : " form__save-button_type_profile_disabled" )} type="submit" >Редактировать</button>
         <Link to="/signin" className="form__question form__question_type_profile"><span className="form__link form__link_type_profile" onClick={handleClick}>Выйти из аккаунта</span></Link>
       </Form>
     </main>
