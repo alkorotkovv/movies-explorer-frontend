@@ -130,7 +130,12 @@ function App() {
       })  
   }
 
-
+  //Обработчик выхода из аккаунта
+  function handleExitSubmit() {
+    localStorage.removeItem('token');
+    setLoggedIn(false);
+    history.push("/signin");
+  }
 
 
 
@@ -138,7 +143,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <InfoTooltip isOpen={isTooltipOpen} onClose={closeTooltip} title={tooltip.error} subtitle={tooltip.text} />
-      <Header onOpenMenu={handleOpenMenu} />
+      <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
       <Menu isOpen ={isMenuVisible} onClose={handleCloseMenu} />
       <Switch>
         <Route path="/signup">
@@ -151,7 +156,7 @@ function App() {
             path="/profile"
             loggedIn={loggedIn}
             component={Profile}
-            //user = {currentUser}
+            onExit={handleExitSubmit}
         />
         <Route path="/movies">
           <ProtectedRoute

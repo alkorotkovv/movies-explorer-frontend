@@ -11,6 +11,11 @@ function Profile(props) {
   const inputName = useInput(currentUser.name);
   const inputEmail = useInput(currentUser.email);
 
+  function handleClick() {
+    props.onExit();
+    //setVisible(false);
+  }
+
   return (
     <main className="profile">
       <Form type="profile" name="profile" >
@@ -48,7 +53,7 @@ function Profile(props) {
           </div>
         </fieldset>
         <button className="form__save-button form__save-button_type_profile" type="submit" >Редактировать</button>
-        <Link to="/signin" className="form__question form__question_type_profile"><span className="form__link form__link_type_profile">Выйти из аккаунта</span></Link>
+        <Link to="/signin" className="form__question form__question_type_profile"><span className="form__link form__link_type_profile" onClick={handleClick}>Выйти из аккаунта</span></Link>
       </Form>
     </main>
   )
