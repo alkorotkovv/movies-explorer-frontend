@@ -1707,6 +1707,16 @@
   opacity: 0.7;
   cursor: pointer;
 }
+.form__save-button_disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+}
+.form__save-button_disabled:hover {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+  opacity: 1;
+  cursor: default;
+}
 @media (max-width: 767px) {
   .form__save-button {
     margin-top: auto;
