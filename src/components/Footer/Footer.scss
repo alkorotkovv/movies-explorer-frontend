@@ -1,0 +1,134 @@
+$mainColor: rgb(256, 256, 256);
+
+.footer {
+  margin: 0;
+  padding: 79px 70px 20px 70px;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-areas:
+      "title title"
+      "copy nav";
+  background-color: transparent;
+  flex-shrink: 1;
+
+  @media (max-width: 1100px) {
+    & {
+      padding: 79px 30px 20px 30px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    & {
+      padding: 79px 10px 20px 10px;
+      grid-template-areas:
+      "title"
+      "nav"
+      "copy";
+      justify-items: center;
+    }
+  }
+
+  &__title {
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.22;
+    color: #A0A0A0;
+    border-bottom: 1px solid #E8E8E8;
+    text-align: center;
+    grid-area: title;
+
+    @media (max-width: 1100px) {
+      & {
+        font-size: 13px;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      & {
+        margin-bottom: 30px;
+        font-size: 12px;
+      }
+    }
+    
+  }
+
+  &__copyright {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.22;
+    justify-self: start;
+    grid-area: copy;
+
+    @media (max-width: 1100px) {
+      & {
+      }
+    }
+    
+    @media (max-width: 767px) {
+      & {
+        padding-top: 30px;
+        justify-self: center;
+      }
+    }
+  }
+
+  &__nav {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    justify-self: end;
+    grid-area: nav;
+  
+    @media (max-width: 1100px) {
+      & {
+      }
+    }
+  
+    @media (max-width: 767px) {
+      & {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        justify-self: center;
+      }
+    }
+    
+  }
+
+  &__link {
+    margin: 0;
+    padding: 0;
+    color: black;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.22;
+    transition: opacity 0.3s linear;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+  
+    @media (max-width: 1100px) {
+      & {
+      }
+    }
+  
+    @media (max-width: 767px) {
+      & {
+      }
+    }
+    
+  }
+
+}

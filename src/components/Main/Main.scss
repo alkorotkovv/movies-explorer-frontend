@@ -1,0 +1,9 @@
+.main {
+  margin: 0;
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;  /*для липкого футера*/
+}
