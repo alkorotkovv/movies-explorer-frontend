@@ -1,12 +1,15 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Form from "../Form/Form.js";
 import useInput from '../../utils/hooks/useInput';
+import CurrentUserContext from '../../context/CurrentUserContext.js';
 
 function Profile(props) {
-  console.log(props)
+  const currentUser = React.useContext(CurrentUserContext);
+  console.log(currentUser)
 
-  const inputName = useInput(props.user.name);
-  const inputEmail = useInput(props.user.email);
+  const inputName = useInput(currentUser.name);
+  const inputEmail = useInput(currentUser.email);
 
   return (
     <main className="profile">

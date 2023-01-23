@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import api from '../../utils/MainApi.js';
+import CurrentUserContext from '../../context/CurrentUserContext';
 
 import Footer from '../Footer/Footer.js';
 import Header from '../Header/Header.js';
@@ -134,6 +135,7 @@ function App() {
 
 
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <InfoTooltip isOpen={isTooltipOpen} onClose={closeTooltip} title={tooltip.error} subtitle={tooltip.text} />
       <Header onOpenMenu={handleOpenMenu} />
@@ -149,7 +151,7 @@ function App() {
             path="/profile"
             loggedIn={loggedIn}
             component={Profile}
-            user = {currentUser}
+            //user = {currentUser}
         />
         <Route path="/movies">
           <ProtectedRoute
@@ -173,6 +175,7 @@ function App() {
         </Route>
       </Switch>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 
