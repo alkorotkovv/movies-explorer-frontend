@@ -5,11 +5,9 @@ import SearchForm from '../SearchForm/SearchForm.js';
 function Movies(props) {
 
   //console.log("propsMovies");
-  //console.log(props);
-
-  //const [isShort, setIsShort] = React.useState(false);
+  //console.log(props.moviesList);
+  
     
-
   let moviesList;
   if (localStorage.getItem("films")) {
     moviesList = JSON.parse(localStorage.getItem("films"))
@@ -17,15 +15,12 @@ function Movies(props) {
   else {
     moviesList = [];
   }
-
-  let isShort = JSON.parse(localStorage.getItem("isShort"))
-  //let isShort = false
   
 
   return (
     <main className="movies">
       <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch}/>
-      <MoviesCardList cards={moviesList} isShort={isShort} />
+      <MoviesCardList cards={moviesList} isShort={props.isShort} />
     </main>
   );
 }

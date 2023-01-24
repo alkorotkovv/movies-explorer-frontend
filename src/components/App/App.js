@@ -27,7 +27,9 @@ function App() {
   const [tooltip, setTooltip] = React.useState({error: "номер ошибки", text: "текст ошибки"});
 
   const [isShort, setIsShort] = React.useState(false);
-  //const [isShortSaved, setIsShortSaved] = React.useState(false);
+  const [isShortSaved, setIsShortSaved] = React.useState(false);
+
+  const [moviesList, setMoviesList] = React.useState([]);
 
   
   React.useEffect(() => {
@@ -51,7 +53,6 @@ function App() {
     if (localStorage.getItem('token')) {
       api.getUserByToken(localStorage.getItem('token'))
         .then(res => {
-          console.log(res)
           if (res.data) {
             const {_id, name, email} = res.data;
             setLoggedIn(true);
@@ -176,6 +177,7 @@ function App() {
         localStorage.setItem("films", JSON.stringify(res));
         localStorage.setItem("filter", JSON.stringify(filter));
         localStorage.setItem("isShort", JSON.stringify(isShort));
+        setMoviesList(res);
       })
       .catch((err) => {
         setTooltip({error: err.statusCode, text: err.message})
@@ -185,15 +187,15 @@ function App() {
   }
 
   function handleFilmSwitch(isChecked) {
+    localStorage.setItem("isShort", JSON.stringify(isChecked));
     setIsShort(isChecked);
   }
-
-  /*
+  
   function handleFilmSavedSwitch(isChecked) {
-    //setIsShortSaved(isChecked);
     localStorage.setItem("isShortSaved", JSON.stringify(isChecked));
+    setIsShortSaved(isChecked);
   }
-  */
+  
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -223,6 +225,7 @@ function App() {
             onSubmit={handleFilmSubmit}
             onSwitch={handleFilmSwitch}
             isShort={isShort}
+            moviesList={moviesList}
           />
           <Footer />
         </Route>
@@ -232,8 +235,8 @@ function App() {
             loggedIn={loggedIn}
             component={SavedMovies}
             //onSubmit={handleFilmSavedSubmit}
-            //onSwitch={handleFilmSavedSwitch}
-            //isShort={isShortSaved}
+            onSwitch={handleFilmSavedSwitch}
+            isShort={isShortSaved}
           />
           <Footer />
         </Route>
