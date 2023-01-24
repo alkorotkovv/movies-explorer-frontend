@@ -8,11 +8,11 @@ function Header(props) {
     props.onOpenMenu();
   }
 
-  const location = useLocation();
+  const location = useLocation().pathname;
   let block;
 
   // eslint-disable-next-line default-case
-  switch (location.pathname) {
+  switch (location) {
     case "/signin":
     case "/signup":
       block = (
@@ -21,12 +21,13 @@ function Header(props) {
         </header>
       )
       break;
+      /*
     case "/profile":
         block = (
           <header className="header header_profile">
             <Link to="/" className="header__link"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
             <nav className='header__navi'>
-              <Link to="/movies" className="header__link header__link_active">Фильмы</Link>
+              <Link to="/movies" className="header__link">Фильмы</Link>
               <Link to="/saved-movies" className="header__link">Сохранённые фильмы</Link>
             </nav>
             <div className='header__buttons'>
@@ -36,14 +37,16 @@ function Header(props) {
           </header>
         )
         break;
+        */
+    case "/profile":    
     case "/movies":
     case "/saved-movies":
       block = (
         <header className="header header_profile">
           <Link to="/" className="header__link"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
           <nav className='header__navi'>
-            <Link to="/movies" className="header__link header__link_active">Фильмы</Link>
-            <Link to="/saved-movies" className="header__link">Сохранённые фильмы</Link>
+            <Link to="/movies" className={"header__link" + (location === "/movies"? " header__link_active" : "")}>Фильмы</Link>
+            <Link to="/saved-movies" className={"header__link" + (location === "/saved-movies"? " header__link_active" : "")}>Сохранённые фильмы</Link>
           </nav>
           <div className='header__buttons'>
             <Link to="/profile" className="header__button header__button_color_gray">Аккаунт</Link>
@@ -57,7 +60,7 @@ function Header(props) {
         <header className="header">
           <Link to="/" className="header__link"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
           <nav className='header__navi'>
-            <Link to="/movies" className={"header__link" + (props.loggedIn? "" : " header__link_unvisible") + " header__link_active"}>Фильмы</Link>
+            <Link to="/movies" className={"header__link" + (props.loggedIn? "" : " header__link_unvisible")}>Фильмы</Link>
             <Link to="/saved-movies" className={"header__link" + (props.loggedIn? "" : " header__link_unvisible")}>Сохранённые фильмы</Link>
           </nav>
           <div className='header__buttons'>
