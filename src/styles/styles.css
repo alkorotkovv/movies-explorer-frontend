@@ -1487,11 +1487,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  display: flex;
   font-weight: 500;
   font-size: 15px;
   line-height: 1.2;
   grid-area: title;
+  max-width: calc(100% - 10px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .card__duration {
   margin: 0;

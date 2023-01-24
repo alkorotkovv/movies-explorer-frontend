@@ -85,19 +85,6 @@ class MainApi {
 
   
 
-
-  //Метод получения данных пользователя
-  getUserInfo() {
-    return fetch(this._baseUrl + '/users/me', {
-    method: 'GET',
-    headers: {
-      "Authorization": `Bearer ${localStorage.getItem('token')}`,
-      'Content-Type': 'application/json'
-    }
-    })
-    .then(res => this._checkResult(res))
-  };
-
   //Метод получения инициализируемых карточек
   getInitialCards() {
     return fetch(this._baseUrl + '/cards', {

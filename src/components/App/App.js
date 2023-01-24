@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import api from '../../utils/MainApi.js';
+import apiMovies from '../../utils/MoviesApi.js';
 import CurrentUserContext from '../../context/CurrentUserContext';
 
 import Footer from '../Footer/Footer.js';
@@ -24,6 +25,8 @@ function App() {
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const [tooltip, setTooltip] = React.useState({error: "номер ошибки", text: "текст ошибки"});
+
+  const [cards, setCards] = React.useState([]);
 
   
   React.useEffect(() => {
@@ -159,6 +162,29 @@ function App() {
     history.push("/signin");
   }
 
+  //Обработчик сабмита формы поиска фильмов
+  function handleFilmSubmit(data) {
+    const {film} = data;
+    //console.log(film)
+    if (film === "") {
+      setTooltip({error: "", text: "Нужно ввести ключевое слово"})
+      setIsTooltipOpen(true);
+    }
+    else {
+      apiMovies.getFilms()
+      .then((res)=> {
+        console.log("результат:");
+        console.log(res);
+        localStorage.setItem("films", JSON.stringify(res));
+        setCards(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        setTooltip({error: err.statusCode, text: err.message})
+        setIsTooltipOpen(true);
+      })  
+    }
+  }
 
 
   return (
@@ -186,6 +212,8 @@ function App() {
             path="/movies"
             loggedIn={loggedIn}
             component={Movies}
+            onSubmit={handleFilmSubmit}
+            cards={cards}
           />
           <Footer />
         </Route>

@@ -64,7 +64,9 @@ function Profile(props) {
           className={"form__save-button form__save-button_type_profile" + (isValid ? "" : " form__save-button_type_profile_disabled" )} 
           type="submit" 
           disabled={!isValid} >Редактировать</button>
-        <Link to="/signin" className="form__question form__question_type_profile"><span className="form__link form__link_type_profile" onClick={handleClick}>Выйти из аккаунта</span></Link>
+        <Link to="/signin" className="form__question form__question_type_profile">
+          <span className="form__link form__link_type_profile" onClick={handleClick}>Выйти из аккаунта</span>
+        </Link>
       </Form>
     </main>
   )
