@@ -130,6 +130,28 @@ function App() {
       })  
   }
 
+  //Обработчик сабмита формы входа
+  function handleProfileSubmit(data) {
+    const {name, email} = data;
+    api.setUserInfo(name, email)
+      .then((res) => {
+        console.log("результат:");
+        console.log(res);
+        if (res.data) {
+          setCurrentUser({name, email});
+        }
+        else {
+          setTooltip({error: res.statusCode, text: res.message})
+          setIsTooltipOpen(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setTooltip({error: err.statusCode, text: err.message})
+        setIsTooltipOpen(true);
+      })  
+  }
+
   //Обработчик выхода из аккаунта
   function handleExitSubmit() {
     localStorage.removeItem('token');
@@ -156,6 +178,7 @@ function App() {
             path="/profile"
             loggedIn={loggedIn}
             component={Profile}
+            onSubmit={handleProfileSubmit}
             onExit={handleExitSubmit}
         />
         <Route path="/movies">

@@ -59,6 +59,27 @@ class MainApi {
     .then(res => this._checkResult(res));
   }; 
 
+  //Метод изменения данных пользователя
+  setUserInfo(name, email) {
+    return fetch(this._baseUrl + '/users/me', {
+      method: 'PATCH',
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: `${name}`,
+        email: `${email}`
+      })
+    })
+    .then(res => this._checkResult(res))
+  };
+
+
+
+
+
+
 
 
 
@@ -89,21 +110,7 @@ class MainApi {
     .then(res => this._checkResult(res))
   };
 
-  //Метод изменения данных пользователя
-  setUserInfo(inputValuesObject) {
-    return fetch(this._baseUrl + '/users/me', {
-      method: 'PATCH',
-      headers: {
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: `${inputValuesObject.name}`,
-        about: `${inputValuesObject.about}`
-      })
-    })
-    .then(res => this._checkResult(res))
-  };
+  
 
   //Метод добавления новой карточки
   addCard(cardData) {

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function useInput(val) {
+function useInput(val, isVal) {
   
   const [value, setValue] = React.useState(val);
-  const [isValid, setIsValid] = React.useState(false);
+  const [isValid, setIsValid] = React.useState(isVal);
   const [message, setMessage] = React.useState("");
   
 

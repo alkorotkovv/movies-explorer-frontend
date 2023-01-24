@@ -6,8 +6,8 @@ import useInput from '../../utils/hooks/useInput';
 function Login(props) {
 
   const [isValid, setIsValid] = React.useState(false);
-  const inputEmail = useInput("");
-  const inputPassword = useInput("");
+  const inputEmail = useInput("", false);
+  const inputPassword = useInput("", false);
 
   React.useEffect(() => {
     setIsValid(inputEmail.isValid && inputPassword.isValid);

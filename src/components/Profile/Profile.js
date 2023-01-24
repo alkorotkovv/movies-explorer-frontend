@@ -7,22 +7,26 @@ import CurrentUserContext from '../../context/CurrentUserContext.js';
 function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const [isValid, setIsValid] = React.useState(true);
-  const inputName = useInput(currentUser.name);
-  const inputEmail = useInput(currentUser.email);
+  const [isValid, setIsValid] = React.useState(false);
+  const inputName = useInput(currentUser.name, true);
+  const inputEmail = useInput(currentUser.email, true);
 
   React.useEffect(() => {
-    setIsValid(inputEmail.isValid && inputName.isValid);
-  }, [inputEmail.isValid, inputName.isValid]);
+    console.log(currentUser.name)
+    console.log(inputName.value)
+    setIsValid(inputEmail.isValid && inputName.isValid && (inputName.value !== currentUser.name || inputEmail.value !== currentUser.email));
+  }, [inputEmail.value, inputName.value]);
 
   function handleClick() {
     props.onExit();
     //setVisible(false);
   }
 
+  console.log(isValid)
+
   return (
     <main className="profile">
-      <Form type="profile" name="profile" >
+      <Form type="profile" name="profile" onSubmit={props.onSubmit} inName={inputName.value} inEmail={inputEmail.value}>
         <h2 className="form__title form__title_type_profile">Привет, Александр!</h2>
         <fieldset className="form__info form__info_type_profile">
           <div className="form__field form__field_type_profile">
@@ -56,7 +60,10 @@ function Profile(props) {
             <span className="form__span form__span_type_profile" >{inputEmail.message}</span>
           </div>
         </fieldset>
-        <button className={"form__save-button form__save-button_type_profile" + (isValid ? "" : " form__save-button_type_profile_disabled" )} type="submit" >Редактировать</button>
+        <button 
+          className={"form__save-button form__save-button_type_profile" + (isValid ? "" : " form__save-button_type_profile_disabled" )} 
+          type="submit" 
+          disabled={!isValid} >Редактировать</button>
         <Link to="/signin" className="form__question form__question_type_profile"><span className="form__link form__link_type_profile" onClick={handleClick}>Выйти из аккаунта</span></Link>
       </Form>
     </main>
