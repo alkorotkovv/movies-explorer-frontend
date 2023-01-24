@@ -23,7 +23,7 @@ function SearchForm(props) {
         placeholder="Фильм" 
         required></input>
       <button className="search-form__button" type="submit" ></button>
-      <FilterCheckbox />
+      <FilterCheckbox onSwitch={props.onSwitch}/>
     </form>
   );
 }

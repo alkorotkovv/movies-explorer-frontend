@@ -27,6 +27,7 @@ function App() {
   const [tooltip, setTooltip] = React.useState({error: "номер ошибки", text: "текст ошибки"});
 
   const [cards, setCards] = React.useState([]);
+  const [isShort, setIsShort] = React.useState(false);
 
   
   React.useEffect(() => {
