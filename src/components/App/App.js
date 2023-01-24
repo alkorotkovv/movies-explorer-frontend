@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import api from '../../utils/MainApi.js';
 import apiMovies from '../../utils/MoviesApi.js';
 import CurrentUserContext from '../../context/CurrentUserContext';
@@ -20,6 +20,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 function App() {
 
   const history = useHistory();
+  const location = useLocation().pathname;
+
   const [currentUser, setCurrentUser] = React.useState({name: "", email: ""});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
@@ -30,6 +32,7 @@ function App() {
   const [isShortSaved, setIsShortSaved] = React.useState(false);
 
   const [moviesList, setMoviesList] = React.useState([]);
+  const [moviesSavedList, setMoviesSavedList] = React.useState([]);
 
   
   React.useEffect(() => {
@@ -49,6 +52,7 @@ function App() {
     checkToken();
   }, [])
 
+  //Функция проверки токена пользователя
   function checkToken() {
     if (localStorage.getItem('token')) {
       api.getUserByToken(localStorage.getItem('token'))
@@ -57,7 +61,20 @@ function App() {
             const {_id, name, email} = res.data;
             setLoggedIn(true);
             setCurrentUser({name, email});
-            history.push("/movies");
+            switch (location) {
+              case "/movies":
+                history.push("/movies");
+                break;
+              case "/saved-movies":
+                history.push("/saved-movies");
+                break;
+              case "/profile":
+                history.push("/profile");
+                break;
+              default:
+                history.push("/");
+            }
+            //history.push("/movies");
           }
           else {
             history.push("/signin");
@@ -186,11 +203,37 @@ function App() {
     }
   }
 
+  //Обработчик сабмита формы поиска сохраненных фильмов
+  function handleFilmSavedSubmit(data) {
+    const {filter} = data;
+    //console.log(film)
+    if (filter === "") {
+      setTooltip({error: "", text: "Нужно ввести ключевое слово"})
+      setIsTooltipOpen(true);
+    }
+    else {
+      apiMovies.getFilms()
+      .then((res)=> {
+        console.log(res)
+        localStorage.setItem("filmsSaved", JSON.stringify(res));
+        localStorage.setItem("filterSaved", JSON.stringify(filter));
+        localStorage.setItem("isShortSaved", JSON.stringify(isShort));
+        setMoviesSavedList(res);
+      })
+      .catch((err) => {
+        setTooltip({error: err.statusCode, text: err.message})
+        setIsTooltipOpen(true);
+      })
+    }
+  }
+
+  //Обработчик нажатия чекбокса фильмов
   function handleFilmSwitch(isChecked) {
     localStorage.setItem("isShort", JSON.stringify(isChecked));
     setIsShort(isChecked);
   }
   
+  //Обработчик нажатия чекбокса сохраненных фильмов
   function handleFilmSavedSwitch(isChecked) {
     localStorage.setItem("isShortSaved", JSON.stringify(isChecked));
     setIsShortSaved(isChecked);
@@ -234,9 +277,10 @@ function App() {
             path="/saved-movies"
             loggedIn={loggedIn}
             component={SavedMovies}
-            //onSubmit={handleFilmSavedSubmit}
+            onSubmit={handleFilmSavedSubmit}
             onSwitch={handleFilmSavedSwitch}
             isShort={isShortSaved}
+            moviesList={moviesSavedList}
           />
           <Footer />
         </Route>

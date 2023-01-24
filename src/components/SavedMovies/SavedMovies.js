@@ -4,8 +4,8 @@ import SearchForm from '../SearchForm/SearchForm.js';
 function SavedMovies(props) {
 
   let moviesList;
-  if (localStorage.getItem("films_saved")) {
-    moviesList = JSON.parse(localStorage.getItem("films_saved"))
+  if (localStorage.getItem("filmsSaved")) {
+    moviesList = JSON.parse(localStorage.getItem("filmsSaved"))
   }
   else {
     moviesList = [];
