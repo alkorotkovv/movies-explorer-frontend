@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
 import api from '../../utils/MainApi.js';
 import apiMovies from '../../utils/MoviesApi.js';
 import CurrentUserContext from '../../context/CurrentUserContext';
@@ -15,6 +15,7 @@ import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Preloader from '../Preloader/Preloader.js';
 import Menu from '../Menu/Menu.js';
 import InfoTooltip from '../InfoToolTip/InfoTooltip.js';
+import NotFoundPage from '../NotFoundPage/NotFoundPage.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 
 function App() {
@@ -242,11 +243,15 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-    <div className="page">
+    <div className="page">      
       <InfoTooltip isOpen={isTooltipOpen} onClose={closeTooltip} title={tooltip.error} subtitle={tooltip.text} />
       <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
       <Menu isOpen ={isMenuVisible} onClose={handleCloseMenu} />
       <Switch>
+        <Route exact path="/">
+          <Main />
+          <Footer />
+        </Route>
         <Route path="/signup">
           <Register onSubmit={handleRegisterSubmit} />
         </Route>
@@ -283,11 +288,13 @@ function App() {
             moviesList={moviesSavedList}
           />
           <Footer />
+        </Route>        
+        <Route path="/404">
+            <NotFoundPage />
         </Route>
-        <Route path="/">
-          <Main />
-          <Footer />
-        </Route>
+        <Route path="*">
+          <Redirect to="/404" />
+        </Route>  
       </Switch>
     </div>
     </CurrentUserContext.Provider>
