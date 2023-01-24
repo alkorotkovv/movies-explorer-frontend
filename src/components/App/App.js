@@ -63,17 +63,14 @@ function App() {
             setLoggedIn(true);
             setCurrentUser({name, email});
             switch (location) {
-              case "/movies":
+              case "/signin":
                 history.push("/movies");
                 break;
-              case "/saved-movies":
-                history.push("/saved-movies");
-                break;
-              case "/profile":
-                history.push("/profile");
+              case "/signup":
+                history.push("/movies");
                 break;
               default:
-                history.push("/");
+                history.push(location);
             }
             //history.push("/movies");
           }
@@ -245,27 +242,34 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
     <div className="page">      
       <InfoTooltip isOpen={isTooltipOpen} onClose={closeTooltip} title={tooltip.error} subtitle={tooltip.text} />
-      <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
+      
       <Menu isOpen ={isMenuVisible} onClose={handleCloseMenu} />
       <Switch>
         <Route exact path="/">
+          <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
           <Main />
           <Footer />
         </Route>
         <Route path="/signup">
+          <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
           <Register onSubmit={handleRegisterSubmit} />
         </Route>
         <Route path="/signin">
+          <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
           <Login onSubmit={handleLoginSubmit}/>
         </Route>
-        <ProtectedRoute
-            path="/profile"
-            loggedIn={loggedIn}
-            component={Profile}
-            onSubmit={handleProfileSubmit}
-            onExit={handleExitSubmit}
-        />
+        <Route path="/profile">
+          <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
+          <ProtectedRoute
+              path="/profile"
+              loggedIn={loggedIn}
+              component={Profile}
+              onSubmit={handleProfileSubmit}
+              onExit={handleExitSubmit}
+          />
+        </Route>
         <Route path="/movies">
+          <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
           <ProtectedRoute
             path="/movies"
             loggedIn={loggedIn}
@@ -278,6 +282,7 @@ function App() {
           <Footer />
         </Route>
         <Route path="/saved-movies">
+          <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
           <ProtectedRoute
             path="/saved-movies"
             loggedIn={loggedIn}
