@@ -7,8 +7,9 @@ function Movies(props) {
   //console.log("propsMovies");
   //console.log(props);
 
-  const [isShort, setIsShort] = React.useState(false);
-  
+  //const [isShort, setIsShort] = React.useState(false);
+    
+
   let moviesList;
   if (localStorage.getItem("films")) {
     moviesList = JSON.parse(localStorage.getItem("films"))
@@ -16,16 +17,14 @@ function Movies(props) {
   else {
     moviesList = [];
   }
+
+  let isShort = JSON.parse(localStorage.getItem("isShort"))
+  //let isShort = false
   
-
-
-  function handleSwitch(isChecked) {
-    setIsShort(isChecked);
-  }
 
   return (
     <main className="movies">
-      <SearchForm onSubmit={props.onSubmit} onSwitch={handleSwitch}/>
+      <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch}/>
       <MoviesCardList cards={moviesList} isShort={isShort} />
     </main>
   );

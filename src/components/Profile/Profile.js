@@ -13,6 +13,7 @@ function Profile(props) {
 
   React.useEffect(() => {
     setIsValid(inputEmail.isValid && inputName.isValid && (inputName.value !== currentUser.name || inputEmail.value !== currentUser.email));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputEmail.value, inputName.value]);
 
   function handleClick() {

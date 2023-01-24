@@ -8,7 +8,7 @@ function SearchForm(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    const dataObject = {film: inputFilm.value}
+    const dataObject = {filter: inputFilm.value}
     props.onSubmit(dataObject);
   }
 

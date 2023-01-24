@@ -26,7 +26,8 @@ function App() {
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const [tooltip, setTooltip] = React.useState({error: "номер ошибки", text: "текст ошибки"});
 
-  //const [cards, setCards] = React.useState([]);
+  const [isShort, setIsShort] = React.useState(false);
+  //const [isShortSaved, setIsShortSaved] = React.useState(false);
 
   
   React.useEffect(() => {
@@ -42,7 +43,6 @@ function App() {
     }
   }, [loggedIn])
   
-
   React.useEffect(() => {
     checkToken();
   }, [])
@@ -164,9 +164,9 @@ function App() {
 
   //Обработчик сабмита формы поиска фильмов
   function handleFilmSubmit(data) {
-    const {film} = data;
+    const {filter} = data;
     //console.log(film)
-    if (film === "") {
+    if (filter === "") {
       setTooltip({error: "", text: "Нужно ввести ключевое слово"})
       setIsTooltipOpen(true);
     }
@@ -174,16 +174,26 @@ function App() {
       apiMovies.getFilms()
       .then((res)=> {
         localStorage.setItem("films", JSON.stringify(res));
-        localStorage.setItem("filter", JSON.stringify(film));
+        localStorage.setItem("filter", JSON.stringify(filter));
+        localStorage.setItem("isShort", JSON.stringify(isShort));
       })
       .catch((err) => {
-        //console.log(err);
         setTooltip({error: err.statusCode, text: err.message})
         setIsTooltipOpen(true);
-      })  
+      })
     }
   }
 
+  function handleFilmSwitch(isChecked) {
+    setIsShort(isChecked);
+  }
+
+  /*
+  function handleFilmSavedSwitch(isChecked) {
+    //setIsShortSaved(isChecked);
+    localStorage.setItem("isShortSaved", JSON.stringify(isChecked));
+  }
+  */
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -211,7 +221,8 @@ function App() {
             loggedIn={loggedIn}
             component={Movies}
             onSubmit={handleFilmSubmit}
-            //cards={cards}
+            onSwitch={handleFilmSwitch}
+            isShort={isShort}
           />
           <Footer />
         </Route>
@@ -220,6 +231,9 @@ function App() {
             path="/saved-movies"
             loggedIn={loggedIn}
             component={SavedMovies}
+            //onSubmit={handleFilmSavedSubmit}
+            //onSwitch={handleFilmSavedSwitch}
+            //isShort={isShortSaved}
           />
           <Footer />
         </Route>

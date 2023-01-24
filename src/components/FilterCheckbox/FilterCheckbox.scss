@@ -41,6 +41,15 @@
     display: flex;
     border-radius: 9px;
     position: relative;
+
+    &_checked {
+      background: #2BE080;
+    }
+
+    &_checked:after {
+      left: calc(100% - 2px);
+      transform: translateX(100%);
+    }
   }
   
   &__label:after {
@@ -55,6 +64,7 @@
     transition: 0.3s;
   }
   
+  /*
   &__checkbox:checked + &__label {
     background: #2BE080;
   }
@@ -63,6 +73,7 @@
     left: calc(100% - 2px);
     transform: translateX(-100%);
   }
+  */
 
   &__span{
     margin: 0;
