@@ -31,16 +31,6 @@
       "title like"
       "duration like";
     background-color: transparent;
-
-    @media (max-width: 1100px) {
-      & {
-      }
-    }
-    
-    @media (max-width: 767px) {
-      & {
-      }
-    }
     
   }
 
@@ -58,16 +48,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-
-    @media (max-width: 1100px) {
-      & {
-      }
-    }
-    
-    @media (max-width: 767px) {
-      & {
-      }
-    }
     
   }
 
@@ -81,16 +61,6 @@
     font-size: 11px;
     line-height: 1.2;
     grid-area: duration;
-
-    @media (max-width: 1100px) {
-      & {
-      }
-    }
-    
-    @media (max-width: 767px) {
-      & {
-      }
-    }
     
 
   }
@@ -120,17 +90,7 @@
     &_active {
       background-image: url(../images/like_active.svg);
     }
-
-    @media (max-width: 1100px) {
-      & {
-      }
-    }
-    
-    @media (max-width: 767px) {
-      & {
-      }
-    }
-    
+   
 
   }
 

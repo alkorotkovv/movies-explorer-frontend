@@ -1,7 +1,4 @@
-import cardLogo from '../../images/film-logo.png';
-
 function MoviesCard(props) {
-  console.log(props)
   
   const isLiked = props.isLiked;
   const cardLikeButtonClassName = (`card__like ${isLiked && 'card__like_active'}`);

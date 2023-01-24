@@ -12,14 +12,11 @@ function Profile(props) {
   const inputEmail = useInput(currentUser.email, true);
 
   React.useEffect(() => {
-    console.log(currentUser.name)
-    console.log(inputName.value)
     setIsValid(inputEmail.isValid && inputName.isValid && (inputName.value !== currentUser.name || inputEmail.value !== currentUser.email));
   }, [inputEmail.value, inputName.value]);
 
   function handleClick() {
     props.onExit();
-    //setVisible(false);
   }
 
   console.log(isValid)

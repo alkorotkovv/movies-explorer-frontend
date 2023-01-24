@@ -27,7 +27,6 @@ function App() {
   const [tooltip, setTooltip] = React.useState({error: "номер ошибки", text: "текст ошибки"});
 
   const [cards, setCards] = React.useState([]);
-  const [isShort, setIsShort] = React.useState(false);
 
   
   React.useEffect(() => {
@@ -174,13 +173,13 @@ function App() {
     else {
       apiMovies.getFilms()
       .then((res)=> {
-        console.log("результат:");
-        console.log(res);
+        //console.log("результат:");
+        //console.log(res);
         localStorage.setItem("films", JSON.stringify(res));
         setCards(res);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
         setTooltip({error: err.statusCode, text: err.message})
         setIsTooltipOpen(true);
       })  
