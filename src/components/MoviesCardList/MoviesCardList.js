@@ -2,8 +2,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
 
-  //console.log("propsMovieList");
-  //console.log(props);
+  
 
   let block;
 

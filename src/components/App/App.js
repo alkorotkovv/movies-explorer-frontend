@@ -26,7 +26,7 @@ function App() {
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const [tooltip, setTooltip] = React.useState({error: "номер ошибки", text: "текст ошибки"});
 
-  const [cards, setCards] = React.useState([]);
+  //const [cards, setCards] = React.useState([]);
 
   
   React.useEffect(() => {
@@ -173,10 +173,8 @@ function App() {
     else {
       apiMovies.getFilms()
       .then((res)=> {
-        //console.log("результат:");
-        //console.log(res);
         localStorage.setItem("films", JSON.stringify(res));
-        setCards(res);
+        localStorage.setItem("filter", JSON.stringify(film));
       })
       .catch((err) => {
         //console.log(err);
@@ -213,7 +211,7 @@ function App() {
             loggedIn={loggedIn}
             component={Movies}
             onSubmit={handleFilmSubmit}
-            cards={cards}
+            //cards={cards}
           />
           <Footer />
         </Route>
