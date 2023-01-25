@@ -228,7 +228,7 @@ function App() {
 
   //Обработчик нажатия чекбокса фильмов
   function handleFilmSwitch(isChecked) {
-    localStorage.setItem("isShort", JSON.stringify(isChecked));
+    localStorage.setItem("isShort", JSON.stringify(isChecked || false));
     setIsShort(isChecked);
   }
   
