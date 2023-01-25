@@ -250,12 +250,14 @@
       
       &_disabled {
         color: #C2C2C2;
-      }
+
         &:hover {
           color: #C2C2C2;
           opacity: 1;
           cursor: default;
         }
+      }
+        
     }
 
     

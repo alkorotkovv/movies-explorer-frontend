@@ -14,7 +14,7 @@ function Profile(props) {
   React.useEffect(() => {
     setIsValid(inputEmail.isValid && inputName.isValid && (inputName.value !== currentUser.name || inputEmail.value !== currentUser.email));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputEmail.value, inputName.value]);
+  }, [inputEmail.value, inputName.value, currentUser.name, currentUser.email]);
 
   function handleClick() {
     props.onExit();
@@ -25,7 +25,7 @@ function Profile(props) {
   return (
     <main className="profile">
       <Form type="profile" name="profile" onSubmit={props.onSubmit} inName={inputName.value} inEmail={inputEmail.value}>
-        <h2 className="form__title form__title_type_profile">Привет, Александр!</h2>
+        <h2 className="form__title form__title_type_profile">{"Привет, " + (currentUser.name) + "!"}</h2>
         <fieldset className="form__info form__info_type_profile">
           <div className="form__field form__field_type_profile">
             <label className="form__label form__label_type_profile">Имя</label>

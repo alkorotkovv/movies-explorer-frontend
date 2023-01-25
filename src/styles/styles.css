@@ -1770,7 +1770,7 @@
 .form__save-button_type_profile_disabled {
   color: #C2C2C2;
 }
-.form__save-button_type_profile:hover {
+.form__save-button_type_profile_disabled:hover {
   color: #C2C2C2;
   opacity: 1;
   cursor: default;
