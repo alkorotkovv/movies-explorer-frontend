@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
@@ -51,7 +51,7 @@ function MoviesCardList(props) {
           updated_at = {element.updated_at}
           year = {element.year}
 
-          isLiked={false}
+          isLiked={true}
           onLike={props.onLike}
         />
       )

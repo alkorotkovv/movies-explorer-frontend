@@ -210,24 +210,18 @@ function App() {
   //Обработчик сабмита формы поиска сохраненных фильмов
   function handleFilmSavedSubmit(data) {
     const {filter} = data;
-    if (filter === "") {
-      setTooltip({error: "", text: "Нужно ввести ключевое слово"})
+    api.getSavedMovies()
+    .then((res)=> {
+      console.log(res.data)
+      localStorage.setItem("filmsSaved", JSON.stringify(res.data));
+      localStorage.setItem("filterSaved", JSON.stringify(filter));
+      localStorage.setItem("isShortSaved", JSON.stringify(isShortSaved));
+      setMoviesSavedList(res.data);
+    })
+    .catch((err) => {
+      setTooltip({error: err.statusCode, text: err.message})
       setIsTooltipOpen(true);
-    }
-    else {
-      api.getSavedMovies()
-      .then((res)=> {
-        console.log(res.data)
-        localStorage.setItem("filmsSaved", JSON.stringify(res.data));
-        localStorage.setItem("filterSaved", JSON.stringify(filter));
-        localStorage.setItem("isShortSaved", JSON.stringify(isShortSaved));
-        setMoviesSavedList(res.data);
-      })
-      .catch((err) => {
-        setTooltip({error: err.statusCode, text: err.message})
-        setIsTooltipOpen(true);
-      })
-    }
+    })
   }
 
   //Обработчик нажатия чекбокса фильмов
