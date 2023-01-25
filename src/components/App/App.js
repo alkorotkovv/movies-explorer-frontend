@@ -177,6 +177,9 @@ function App() {
     localStorage.removeItem('filter');
     localStorage.removeItem('isShort');
     localStorage.removeItem('films');
+    localStorage.removeItem('filterSaved');
+    localStorage.removeItem('isShortSaved');
+    localStorage.removeItem('filmsSaved');
     setLoggedIn(false);
     history.push("/signin");
   }
@@ -212,12 +215,13 @@ function App() {
       setIsTooltipOpen(true);
     }
     else {
-      apiMovies.getFilms()
+      api.getSavedMovies()
       .then((res)=> {
-        localStorage.setItem("filmsSaved", JSON.stringify(res));
+        console.log(res.data)
+        localStorage.setItem("filmsSaved", JSON.stringify(res.data));
         localStorage.setItem("filterSaved", JSON.stringify(filter));
         localStorage.setItem("isShortSaved", JSON.stringify(isShortSaved));
-        setMoviesSavedList(res);
+        setMoviesSavedList(res.data);
       })
       .catch((err) => {
         setTooltip({error: err.statusCode, text: err.message})
@@ -234,7 +238,7 @@ function App() {
   
   //Обработчик нажатия чекбокса сохраненных фильмов
   function handleFilmSavedSwitch(isChecked) {
-    localStorage.setItem("isShortSaved", JSON.stringify(isChecked));
+    localStorage.setItem("isShortSaved", JSON.stringify(isChecked || false));
     setIsShortSaved(isChecked);
   }
   
@@ -291,7 +295,7 @@ function App() {
             onSubmit={handleFilmSavedSubmit}
             onSwitch={handleFilmSavedSwitch}
             isShort={isShortSaved}
-            moviesList={moviesSavedList}
+            //moviesList={moviesSavedList}
           />
           <Footer />
         </Route>

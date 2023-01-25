@@ -90,6 +90,11 @@
     &_active {
       background-image: url(../images/like_active.svg);
     }
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
    
 
   }
