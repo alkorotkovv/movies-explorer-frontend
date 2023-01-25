@@ -21,23 +21,6 @@ function Header(props) {
         </header>
       )
       break;
-      /*
-    case "/profile":
-        block = (
-          <header className="header header_profile">
-            <Link to="/" className="header__link"><img className="header__logo" src={headerLogo} alt="логотип"/></Link>
-            <nav className='header__navi'>
-              <Link to="/movies" className="header__link">Фильмы</Link>
-              <Link to="/saved-movies" className="header__link">Сохранённые фильмы</Link>
-            </nav>
-            <div className='header__buttons'>
-              <Link to="/profile" className="header__button header__button_color_gray">Аккаунт</Link>
-              <img className="header__burger" src={burgerLogo} alt="бургер" onClick={handleBurgerClick} />
-          </div>
-          </header>
-        )
-        break;
-        */
     case "/profile":    
     case "/movies":
     case "/saved-movies":

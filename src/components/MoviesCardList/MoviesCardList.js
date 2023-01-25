@@ -3,7 +3,8 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
 
-  //console.log (props.cards)
+  //console.log ("props in cardlist")
+  //console.log (props)
   const location = useLocation().pathname;
 
   let block;
@@ -27,6 +28,8 @@ function MoviesCardList(props) {
           updated_at = {element.updated_at}
           year = {element.year}
 
+          moviesSavedList={props.moviesSavedList}
+          getSavedFilms = {props.getSavedFilms}
           isLiked={false}
           onLike={props.onLike}
         />
@@ -51,6 +54,7 @@ function MoviesCardList(props) {
           updated_at = {element.updated_at}
           year = {element.year}
 
+          getSavedFilms = {props.getSavedFilms}
           isLiked={true}
           onLike={props.onLike}
         />

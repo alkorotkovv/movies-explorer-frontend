@@ -212,7 +212,7 @@ function App() {
     const {filter} = data;
     api.getSavedMovies()
     .then((res)=> {
-      console.log(res.data)
+      //console.log(res.data)
       localStorage.setItem("filmsSaved", JSON.stringify(res.data));
       localStorage.setItem("filterSaved", JSON.stringify(filter));
       localStorage.setItem("isShortSaved", JSON.stringify(isShortSaved));
@@ -305,6 +305,28 @@ function App() {
     */
   }
 
+  function getSavedFilms() {
+    //console.log("getfilms")
+    let savedMovies = [];
+    api.getSavedMovies()
+      .then((res) => {
+        //console.log("сохраненные уже")
+        savedMovies = res.data;
+        //console.log(savedMovies)
+        setMoviesSavedList(res.data);
+        //let isLiked = savedMovies.some(movie => movie.movieId === id);
+        //console.log(isLiked)
+        
+      })
+      .catch((err) => {
+        setTooltip({error: err.statusCode, text: err.message})
+        setIsTooltipOpen(true);
+      })
+      .finally(() => {
+        //console.log(savedMovies)
+      })
+    
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -346,6 +368,8 @@ function App() {
             onSwitch={handleFilmSwitch}
             isShort={isShort}
             //moviesList={moviesList}
+            moviesSavedList={moviesSavedList}
+            getSavedFilms = {getSavedFilms}
             onLike={handleLikeFilm}
           />
           <Footer />
@@ -360,6 +384,8 @@ function App() {
             onSwitch={handleFilmSavedSwitch}
             isShort={isShortSaved}
             //moviesList={moviesSavedList}
+            moviesSavedList={moviesSavedList}
+            getSavedFilms = {getSavedFilms}
             onLike={handleLikeFilm}
           />
           <Footer />

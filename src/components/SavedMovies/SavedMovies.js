@@ -28,7 +28,7 @@ function SavedMovies(props) {
   return (
     <main className="movies">
       <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch} filter={filter} />
-      <MoviesCardList cards={movies} isShort={props.isShort} onLike={props.onLike} />
+      <MoviesCardList cards={movies} isShort={props.isShort} onLike={props.onLike} getSavedFilms={props.getSavedFilms} moviesSavedList={props.moviesSavedList} />
     </main>
   );
 }
