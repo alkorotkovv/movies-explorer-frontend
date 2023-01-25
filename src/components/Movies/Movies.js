@@ -4,23 +4,33 @@ import SearchForm from '../SearchForm/SearchForm.js';
 
 function Movies(props) {
 
-  //console.log("propsMovies");
-  //console.log(props.moviesList);
+  React.useEffect(() => {
+    getFilter();
+    getMoviesList();
+  }, [])
+
+  const filter = getFilter()
+  const movies = getMoviesList(filter)
+   
+  //Функция получения фильмов для отрисовки (уже отсортированных)
+  function getMoviesList(filter) {    
+    const movies = JSON.parse(localStorage.getItem("films")) || [];
+    const filterFilms = movies.filter(element => element.nameRU.includes(filter));
+    return filterFilms;
+  }
+
+  //Функция получения фильтра из локалсторейджа
+  function getFilter() {
+    let filter = JSON.parse(localStorage.getItem("filter")) || "";
+    return filter;
+  }
   
-    
-  let moviesList;
-  if (localStorage.getItem("films")) {
-    moviesList = JSON.parse(localStorage.getItem("films"))
-  }
-  else {
-    moviesList = [];
-  }
   
 
   return (
     <main className="movies">
-      <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch}/>
-      <MoviesCardList cards={moviesList} isShort={props.isShort} />
+      <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch} filter={filter} />
+      <MoviesCardList cards={movies} isShort={props.isShort} />
     </main>
   );
 }

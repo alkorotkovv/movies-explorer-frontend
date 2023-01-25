@@ -174,6 +174,9 @@ function App() {
   //Обработчик выхода из аккаунта
   function handleExitSubmit() {
     localStorage.removeItem('token');
+    localStorage.removeItem('filter');
+    localStorage.removeItem('isShort');
+    localStorage.removeItem('films');
     setLoggedIn(false);
     history.push("/signin");
   }
@@ -181,7 +184,6 @@ function App() {
   //Обработчик сабмита формы поиска фильмов
   function handleFilmSubmit(data) {
     const {filter} = data;
-    //console.log(film)
     if (filter === "") {
       setTooltip({error: "", text: "Нужно ввести ключевое слово"})
       setIsTooltipOpen(true);
@@ -212,10 +214,9 @@ function App() {
     else {
       apiMovies.getFilms()
       .then((res)=> {
-        console.log(res)
         localStorage.setItem("filmsSaved", JSON.stringify(res));
         localStorage.setItem("filterSaved", JSON.stringify(filter));
-        localStorage.setItem("isShortSaved", JSON.stringify(isShort));
+        localStorage.setItem("isShortSaved", JSON.stringify(isShortSaved));
         setMoviesSavedList(res);
       })
       .catch((err) => {
@@ -277,7 +278,7 @@ function App() {
             onSubmit={handleFilmSubmit}
             onSwitch={handleFilmSwitch}
             isShort={isShort}
-            moviesList={moviesList}
+            //moviesList={moviesList}
           />
           <Footer />
         </Route>
@@ -293,7 +294,7 @@ function App() {
             moviesList={moviesSavedList}
           />
           <Footer />
-        </Route>        
+        </Route>
         <Route path="/404">
             <NotFoundPage />
         </Route>

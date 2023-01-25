@@ -4,7 +4,7 @@ import useInput from '../../utils/hooks/useInput';
 
 function SearchForm(props) {
 
-  const inputFilm = useInput("", false);
+  const inputFilm = useInput(props.filter, false);
 
   function handleSubmit(evt) {
     evt.preventDefault();
