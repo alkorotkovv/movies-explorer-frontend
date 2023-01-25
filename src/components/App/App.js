@@ -210,7 +210,6 @@ function App() {
   //Обработчик сабмита формы поиска сохраненных фильмов
   function handleFilmSavedSubmit(data) {
     const {filter} = data;
-    //console.log(film)
     if (filter === "") {
       setTooltip({error: "", text: "Нужно ввести ключевое слово"})
       setIsTooltipOpen(true);
@@ -218,7 +217,7 @@ function App() {
     else {
       api.getSavedMovies()
       .then((res)=> {
-        //console.log(res.data)
+        console.log(res.data)
         localStorage.setItem("filmsSaved", JSON.stringify(res.data));
         localStorage.setItem("filterSaved", JSON.stringify(filter));
         localStorage.setItem("isShortSaved", JSON.stringify(isShortSaved));
@@ -247,6 +246,61 @@ function App() {
     console.log("likeeeeeee")
     console.log(data)
     api.saveMovie(data)
+          .then((res)=> {
+            console.log("сохраняем")
+            console.log(res)
+          })
+          .catch((err) => {
+            setTooltip({error: err.statusCode, text: err.message})
+            setIsTooltipOpen(true);
+          })
+    /*
+    api.getSavedMovies()
+      .then((res)=> {
+        console.log("сохраненные уже")
+        const savedMovies = res.data;
+        console.log(savedMovies)
+        const isLiked = savedMovies.some(movie => movie.movieId === data.movieId);
+        const sameMovies = savedMovies.filter(movie => movie.movieId === data.movieId);
+        const sameId = sameMovies.map(movie => movie._id);
+        console.log(isLiked)
+        console.log("такие же фильмы")
+        console.log(sameMovies)
+        console.log("такие же ids")
+        console.log(sameId)
+        if (isLiked) {
+          sameId.forEach(id => {
+            console.log("такой же id"); 
+            console.log(id)
+            api.deleteMovie(id)
+            .then((res)=> {
+              console.log("удаляем")
+              console.log(res)
+            })
+            .catch((err) => {
+              setTooltip({error: err.statusCode, text: err.message})
+              setIsTooltipOpen(true);
+            })
+          })
+        }
+        else {
+          api.saveMovie(data)
+          .then((res)=> {
+            console.log("сохраняем")
+            console.log(res)
+          })
+          .catch((err) => {
+            setTooltip({error: err.statusCode, text: err.message})
+            setIsTooltipOpen(true);
+          })
+        }
+      })
+      .catch((err) => {
+        setTooltip({error: err.statusCode, text: err.message})
+        setIsTooltipOpen(true);
+      })
+    /*
+    api.saveMovie(data)
     .then((res)=> {
       console.log(res)
     })
@@ -254,6 +308,7 @@ function App() {
       setTooltip({error: err.statusCode, text: err.message})
       setIsTooltipOpen(true);
     })
+    */
   }
 
 

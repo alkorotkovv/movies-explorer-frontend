@@ -112,21 +112,9 @@ class MainApi {
     .then(res => this._checkResult(res))
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
   //Метод удаления карточки
-  deleteCard(cardData) {
-    return fetch(this._baseUrl + '/cards/' + cardData._id, {
+  deleteMovie(id) {
+    return fetch(this._baseUrl + '/movies/' + id, {
       method: 'DELETE',
       headers: {
         "Authorization": `Bearer ${localStorage.getItem('token')}`,
@@ -135,6 +123,12 @@ class MainApi {
     })
     .then(res => this._checkResult(res))
   };
+
+
+
+
+
+
 
   //Метод установки/снятия лайка
   toggleLikeCard(cardData, isLiked) {
@@ -148,22 +142,6 @@ class MainApi {
     })
     .then(res => this._checkResult(res))
   };
-
-  //Метод установки аватара пользователя
-  setUserAvatar(avatarData) {
-    return fetch(this._baseUrl + '/users/me/avatar', {
-      method: 'PATCH',
-      headers: {
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        avatar: `${avatarData.avatar}`
-      })
-    })
-    .then(res => this._checkResult(res))
-  };
-
 
 
 }

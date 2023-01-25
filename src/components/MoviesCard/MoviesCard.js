@@ -1,11 +1,15 @@
+
 function MoviesCard(props) {
   
   const isLiked = props.isLiked;
   const cardLikeButtonClassName = (`card__like ${isLiked && 'card__like_active'}`);
 
+  //console.log("props in Card")
+  //console.log(props);
+
   function handleClick() {
     //console.log("like");
-    //console.log(props);
+    
     props.onLike(props)
   }
 
