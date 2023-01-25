@@ -2,8 +2,8 @@ import React from 'react';
 
 function MoviesCard(props) {
   
-  console.log("props in Card")
-  console.log(props);
+  //console.log("props in Card")
+  //console.log(props);
 
   React.useEffect(() => {
     props.getSavedFilms();

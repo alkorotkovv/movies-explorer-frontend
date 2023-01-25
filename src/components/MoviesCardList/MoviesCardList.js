@@ -54,6 +54,7 @@ function MoviesCardList(props) {
           updated_at = {element.updated_at}
           year = {element.year}
 
+          moviesSavedList={props.moviesSavedList}
           getSavedFilms = {props.getSavedFilms}
           isLiked={true}
           onLike={props.onLike}
