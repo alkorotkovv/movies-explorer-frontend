@@ -2,8 +2,6 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
 
-  
-
   let block;
 
   if (!props.isShort) {
@@ -11,18 +9,22 @@ function MoviesCardList(props) {
       props.cards.map((element, index) => 
         <MoviesCard 
           key={element.id} 
+          movieId = {element.id}
           country = {element.country}
           created_at = {element.created_at}
           description = {element.description}
           director = {element.director}
           duration = {element.duration}
-          image = {element.image}
+          image = {"https://api.nomoreparties.co" + element.image.url}
+          thumbnail = {"https://api.nomoreparties.co" + element.image.url}
           nameEN = {element.nameEN}
           nameRU = {element.nameRU}
           trailerLink = {element.trailerLink}
           updated_at = {element.updated_at}
           year = {element.year}
+
           isLiked={false}
+          onLike={props.onLike}
         />
       )
     }
@@ -31,18 +33,22 @@ function MoviesCardList(props) {
       props.cards.filter(element => element.duration < 40).map((element, index) =>
         <MoviesCard 
           key={element.id} 
+          movieId = {element.id}
           country = {element.country}
           created_at = {element.created_at}
           description = {element.description}
           director = {element.director}
           duration = {element.duration}
-          image = {element.image}
+          image = {"https://api.nomoreparties.co" + element.image.url}
+          thumbnail = {"https://api.nomoreparties.co" + element.image.url}
           nameEN = {element.nameEN}
           nameRU = {element.nameRU}
           trailerLink = {element.trailerLink}
           updated_at = {element.updated_at}
           year = {element.year}
+
           isLiked={false}
+          onLike={props.onLike}
         />
       )
     }

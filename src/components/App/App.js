@@ -194,6 +194,7 @@ function App() {
     else {
       apiMovies.getFilms()
       .then((res)=> {
+        //console.log(res)
         localStorage.setItem("films", JSON.stringify(res));
         localStorage.setItem("filter", JSON.stringify(filter));
         localStorage.setItem("isShort", JSON.stringify(isShort));
@@ -217,7 +218,7 @@ function App() {
     else {
       api.getSavedMovies()
       .then((res)=> {
-        console.log(res.data)
+        //console.log(res.data)
         localStorage.setItem("filmsSaved", JSON.stringify(res.data));
         localStorage.setItem("filterSaved", JSON.stringify(filter));
         localStorage.setItem("isShortSaved", JSON.stringify(isShortSaved));
@@ -242,6 +243,19 @@ function App() {
     setIsShortSaved(isChecked);
   }
   
+  function handleLikeFilm(data) {
+    console.log("likeeeeeee")
+    console.log(data)
+    api.saveMovie(data)
+    .then((res)=> {
+      console.log(res)
+    })
+    .catch((err) => {
+      setTooltip({error: err.statusCode, text: err.message})
+      setIsTooltipOpen(true);
+    })
+  }
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -283,6 +297,7 @@ function App() {
             onSwitch={handleFilmSwitch}
             isShort={isShort}
             //moviesList={moviesList}
+            onLike={handleLikeFilm}
           />
           <Footer />
         </Route>
@@ -296,6 +311,7 @@ function App() {
             onSwitch={handleFilmSavedSwitch}
             isShort={isShortSaved}
             //moviesList={moviesSavedList}
+            onLike={handleLikeFilm}
           />
           <Footer />
         </Route>

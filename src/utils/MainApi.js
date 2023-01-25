@@ -75,7 +75,7 @@ class MainApi {
     .then(res => this._checkResult(res))
   };
 
-  //Метод получения инициализируемых карточек
+  //Метод получения фильм со своего бэкенда
   getSavedMovies() {
     return fetch(this._baseUrl + '/movies', {
       method: 'GET',
@@ -87,33 +87,42 @@ class MainApi {
     .then(res => this._checkResult(res))
   };
 
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  //Метод добавления новой карточки
-  addCard(cardData) {
-    return fetch(this._baseUrl + '/cards', {
+  //Метод добавления нового фильма
+  saveMovie(data) {
+    return fetch(this._baseUrl + '/movies', {
       method: 'POST',
       headers: {
         "Authorization": `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: `${cardData.place}`,
-        link: `${cardData.url}`
+        movieId: `${data.movieId}`,
+        country: `${data.country}`,
+        description: `${data.description}`,
+        director: `${data.director}`,
+        duration: `${data.duration}`,
+        image: `${data.image}`,
+        thumbnail: `${data.thumbnail}`,
+        trailerLink: `${data.trailerLink}`,
+        nameEN: `${data.nameEN}`,
+        nameRU: `${data.nameRU}`,
+        year: `${data.year}`,
       })
     })
     .then(res => this._checkResult(res))
   };
+
+
+
+
+
+
+
+
+
+
+
+
 
   //Метод удаления карточки
   deleteCard(cardData) {
