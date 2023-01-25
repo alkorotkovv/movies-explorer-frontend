@@ -7,6 +7,7 @@ function SavedMovies(props) {
   React.useEffect(() => {
     getFilter();
     getMoviesList();
+    props.onSubmit({filter: ""});
   }, [])
 
   const filter = getFilter()
