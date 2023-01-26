@@ -10,7 +10,7 @@ function MoviesCardList(props) {
   const [windowSize, setWindowsSize] = React.useState(window.screen.width);
   const [cardsCount, setCardsCount] = React.useState(0);
   const [cards, setCards] = React.useState([]);
-  const [click, setClick] = React.useState(0);
+  const [clicks, setClicks] = React.useState(0);
 
 
   React.useEffect(() => {
@@ -34,8 +34,8 @@ function MoviesCardList(props) {
   }, [cardsCount])
 
   React.useEffect(() => {
-    //setSettings();
-  }, [windowSize])
+    setSettings();
+  }, [windowSize, clicks])
 
   function handleResize() {
     setWindowsSize(window.screen.width);
@@ -61,13 +61,13 @@ function MoviesCardList(props) {
     console.log("settings")
     console.log(cardsCount)
     if (window.innerWidth > 1300) {
-      setCardsCount(12)
+      setCardsCount(12 + clicks)
     }
     else if (window.innerWidth > 768) {
-      setCardsCount(8)
+      setCardsCount(8 + clicks)
     }
     else {
-      setCardsCount(5)
+      setCardsCount(5 + clicks)
     }
     
   }
@@ -76,14 +76,18 @@ function MoviesCardList(props) {
   
   function handleMoreClick() {
     console.log("click")
+    //setClicks(clicks + 1)
     if (window.innerWidth > 1300) {
       setCardsCount(cardsCount + 3)
+      setClicks(clicks + 3)
     }
     else if (window.innerWidth > 768) {
       setCardsCount(cardsCount + 2)
+      setClicks(clicks + 2)
     }
     else {
       setCardsCount(cardsCount + 1)
+      setClicks(clicks + 1)
     }
   }
 
