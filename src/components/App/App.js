@@ -276,6 +276,7 @@ function App() {
     api.getSavedMovies()
       .then((res) => {
         setMoviesSavedList(res.data);
+        localStorage.setItem("filmsSaved", JSON.stringify(res.data));
       })
       .catch((err) => {
         setTooltip({error: err.statusCode, text: err.message})
