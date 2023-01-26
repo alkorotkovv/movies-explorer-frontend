@@ -2,8 +2,8 @@ import React from 'react';
 
 function MoviesCard(props) {
   
-  //console.log("props in Card")
-  //console.log(props);
+  console.log("props in Card")
+  console.log(props);
   
   const movieData ={
     movieId: props.movieId,
@@ -28,8 +28,12 @@ function MoviesCard(props) {
   let isLiked = props.moviesSavedList.some(movie => movie.movieId === props.movieId);
 
   function handleClick() {
+    console.log(isLiked)
+    //console.log("props.moviesSavedList")
+    //console.log(props.moviesSavedList)
     if (isLiked) {
       movieData._id = props.moviesSavedList.find(movie => movie.movieId === props.movieId)._id;
+      console.log(movieData)
       props.onUnlike(movieData);
     }
     else {

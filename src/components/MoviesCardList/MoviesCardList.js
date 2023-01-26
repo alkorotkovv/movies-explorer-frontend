@@ -13,7 +13,7 @@ function MoviesCardList(props) {
     block = 
       props.cards.map((element, index) => 
         <MoviesCard 
-          key = {location === "/movies"? element.id : element._id}
+          key = {location === "/movies"? element.id : element.movieId}
           movieId = {location === "/movies"? element.id : element.movieId}
           country = {element.country}
           created_at = {element.created_at}
@@ -40,7 +40,7 @@ function MoviesCardList(props) {
     block = 
       props.cards.filter(element => element.duration < 40).map((element, index) =>
         <MoviesCard 
-          key = {location === "/movies"? element.id : element._id}
+          key = {location === "/movies"? element.id : element.movieId}
           movieId = {location === "/movies"? element.id : element.movieId}
           country = {element.country}
           created_at = {element.created_at}

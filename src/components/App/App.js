@@ -243,13 +243,20 @@ function App() {
   }
   
   function handleLikeFilm(data) {
-    console.log("likeeeeeee")
     console.log(data)
     api.saveMovie(data)
       .then((res)=> {
         console.log("сохраняем")
         console.log(res)
-        getSavedFilms()
+        const newMoviesSavedList = moviesSavedList.slice()
+        
+        newMoviesSavedList.push(res.data);
+        console.log("newMoviesSavedList")
+        console.log(newMoviesSavedList)
+        setMoviesSavedList(newMoviesSavedList);
+        //setMoviesSavedList([data, ...moviesSavedList]);
+        localStorage.setItem("filmsSaved", JSON.stringify(newMoviesSavedList));
+        //getSavedFilms()
       })
       .catch((err) => {
         setTooltip({error: err.statusCode, text: err.message})
@@ -264,7 +271,11 @@ function App() {
       .then((res)=> {
         console.log("удаляем")
         console.log(res)
-        getSavedFilms()
+        const newMoviesSavedList = moviesSavedList.filter((item) => (item._id !== data._id))
+        //console.log(newMoviesSavedList)
+        setMoviesSavedList(newMoviesSavedList);
+        localStorage.setItem("filmsSaved", JSON.stringify(newMoviesSavedList));
+        //getSavedFilms()
       })
       .catch((err) => {
         setTooltip({error: err.statusCode, text: err.message})
@@ -281,7 +292,7 @@ function App() {
       .catch((err) => {
         setTooltip({error: err.statusCode, text: err.message})
         setIsTooltipOpen(true);
-      })    
+      })
   }
 
   return (
