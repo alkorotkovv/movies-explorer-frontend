@@ -4,6 +4,7 @@ function MoviesCard(props) {
   
   //console.log("props in Card")
   //console.log(props);
+  
   const movieData ={
     movieId: props.movieId,
     country: props.country,
@@ -21,30 +22,19 @@ function MoviesCard(props) {
   }
 
   React.useEffect(() => {
-    props.getSavedFilms();
+    //props.getSavedFilms();
   }, [])
 
   let isLiked = props.moviesSavedList.some(movie => movie.movieId === props.movieId);
 
-
-  function getId() {
-    //let duplicat = props.moviesSavedList.find(movie => movie.movieId === props.movieId);
-    //console.log(duplicat);
-    //console.log(duplicat._id);
-    return props.moviesSavedList.find(movie => movie.movieId === props.movieId)._id;
-  }
-
   function handleClick() {
-    console.log(isLiked)
-    //console.log(props)
     if (isLiked) {
-      props.onUnlike(getId());
+      movieData._id = props.moviesSavedList.find(movie => movie.movieId === props.movieId)._id;
+      props.onUnlike(movieData);
     }
     else {
       props.onLike(movieData);
     }
-    
-    props.getSavedFilms();
   }
 
   return (

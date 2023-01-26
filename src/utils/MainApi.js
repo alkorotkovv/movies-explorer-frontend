@@ -125,25 +125,6 @@ class MainApi {
   };
 
 
-
-
-
-
-
-  //Метод установки/снятия лайка
-  toggleLikeCard(cardData, isLiked) {
-    let method = isLiked ? 'DELETE':'PUT';
-    return fetch(this._baseUrl + '/cards/' + cardData._id + '/likes', {
-      method: method,
-      headers: {
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => this._checkResult(res))
-  };
-
-
 }
 
 

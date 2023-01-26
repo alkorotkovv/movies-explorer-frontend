@@ -257,10 +257,10 @@ function App() {
       })
   }
 
-  function handleUnlikeFilm(id) {
+  function handleUnlikeFilm(data) {
     console.log("unlikeeeeeee")
-    console.log(id)
-    api.deleteMovie(id)
+    console.log(data)
+    api.deleteMovie(data._id)
       .then((res)=> {
         console.log("удаляем")
         console.log(res)
