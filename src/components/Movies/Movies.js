@@ -35,7 +35,7 @@ function Movies(props) {
         isShort={props.isShort} 
         onLike={props.onLike} 
         onUnlike={props.onUnlike}
-        getSavedFilms={props.getSavedFilms} 
+        //getSavedFilms={props.getSavedFilms} 
         moviesSavedList={props.moviesSavedList} />
     </main>
   );

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
@@ -5,13 +6,96 @@ function MoviesCardList(props) {
 
   //console.log ("props in cardlist")
   //console.log (props)
+
+  const [windowSize, setWindowsSize] = React.useState(window.screen.width);
+  const [cardsCount, setCardsCount] = React.useState(0);
+  const [cards, setCards] = React.useState([]);
+  const [click, setClick] = React.useState(0);
+
+
+  React.useEffect(() => {
+    setInitialSettings();
+    window.addEventListener('resize', handleResize);
+    //return window.removeEventListener('resize', getWindowWidth);
+  }, [])
+
+  React.useEffect(() => {
+    console.log();
+    console.log(cardsCount);
+    if (window.innerWidth > 1300) {
+      setCards(props.cards.slice(0, cardsCount))
+    }
+    else if (window.innerWidth > 768) {
+      setCards(props.cards.slice(0, cardsCount))
+    }
+    else {
+      setCards(props.cards.slice(0, cardsCount))
+    }    
+  }, [cardsCount])
+
+  React.useEffect(() => {
+    //setSettings();
+  }, [windowSize])
+
+  function handleResize() {
+    setWindowsSize(window.screen.width);
+  }
+
+  function setInitialSettings() { 
+    if (window.innerWidth > 1300) {
+      setCardsCount(12);
+      setCards(props.cards.slice(0, 12))
+    }
+    else if (window.innerWidth > 768) {
+      setCardsCount(8);
+      setCards(props.cards.slice(0, 8))
+    }
+    else {
+      setCardsCount(5);
+      setCards(props.cards.slice(0, 5))
+    }    
+  }
+
+  
+  function setSettings() {
+    console.log("settings")
+    console.log(cardsCount)
+    if (window.innerWidth > 1300) {
+      setCardsCount(12)
+    }
+    else if (window.innerWidth > 768) {
+      setCardsCount(8)
+    }
+    else {
+      setCardsCount(5)
+    }
+    
+  }
+  
+
+  
+  function handleMoreClick() {
+    console.log("click")
+    if (window.innerWidth > 1300) {
+      setCardsCount(cardsCount + 3)
+    }
+    else if (window.innerWidth > 768) {
+      setCardsCount(cardsCount + 2)
+    }
+    else {
+      setCardsCount(cardsCount + 1)
+    }
+  }
+
+
+
   const location = useLocation().pathname;
 
   let block;
 
   if (!props.isShort) {
     block = 
-      props.cards.map((element, index) => 
+      cards.map((element, index) => 
         <MoviesCard 
           key = {location === "/movies"? element.id : element.movieId}
           movieId = {location === "/movies"? element.id : element.movieId}
@@ -29,7 +113,7 @@ function MoviesCardList(props) {
           year = {element.year}
 
           moviesSavedList={props.moviesSavedList}
-          getSavedFilms = {props.getSavedFilms}
+          //getSavedFilms = {props.getSavedFilms}
           //isLiked={false}
           onLike={props.onLike}
           onUnlike={props.onUnlike}
@@ -56,7 +140,7 @@ function MoviesCardList(props) {
           year = {element.year}
 
           moviesSavedList={props.moviesSavedList}
-          getSavedFilms = {props.getSavedFilms}
+          //getSavedFilms = {props.getSavedFilms}
           //isLiked={true}
           onLike={props.onLike}
           onUnlike={props.onUnlike}
@@ -71,7 +155,7 @@ function MoviesCardList(props) {
         block
       }
     </ul>
-    <button className="movies__button-more" type="submit" >Ещё</button>
+    <button className="movies__button-more" type="button" onClick={handleMoreClick} >Ещё</button>
     </>
   );
 }

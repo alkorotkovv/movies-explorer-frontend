@@ -36,7 +36,7 @@ const SavedMoviess = React.memo((props) => {
         isShort={props.isShort} 
         onLike={props.onLike} 
         onUnlike={props.onUnlike}
-        getSavedFilms={props.getSavedFilms} 
+        //getSavedFilms={props.getSavedFilms} 
         moviesSavedList={props.moviesSavedList} />
     </main>
   );
