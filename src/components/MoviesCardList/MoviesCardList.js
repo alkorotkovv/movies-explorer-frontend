@@ -30,8 +30,9 @@ function MoviesCardList(props) {
 
           moviesSavedList={props.moviesSavedList}
           getSavedFilms = {props.getSavedFilms}
-          isLiked={false}
+          //isLiked={false}
           onLike={props.onLike}
+          onUnlike={props.onUnlike}
         />
       )
     }
@@ -56,8 +57,9 @@ function MoviesCardList(props) {
 
           moviesSavedList={props.moviesSavedList}
           getSavedFilms = {props.getSavedFilms}
-          isLiked={true}
+          //isLiked={true}
           onLike={props.onLike}
+          onUnlike={props.onUnlike}
         />
       )
     }

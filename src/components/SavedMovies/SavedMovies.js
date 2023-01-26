@@ -2,9 +2,11 @@ import React from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import SearchForm from '../SearchForm/SearchForm.js';
 
-function SavedMovies(props) {
+const SavedMoviess = React.memo((props) => {
 
   React.useEffect(() => {
+    console.log("рендер сохрфильмов")
+    console.log(props)
     getFilter();
     getMoviesList();
     props.onSubmit({filter: ""});
@@ -29,9 +31,16 @@ function SavedMovies(props) {
   return (
     <main className="movies">
       <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch} filter={filter} />
-      <MoviesCardList cards={movies} isShort={props.isShort} onLike={props.onLike} getSavedFilms={props.getSavedFilms} moviesSavedList={props.moviesSavedList} />
+      <MoviesCardList 
+        cards={movies} 
+        isShort={props.isShort} 
+        onLike={props.onLike} 
+        onUnlike={props.onUnlike}
+        getSavedFilms={props.getSavedFilms} 
+        moviesSavedList={props.moviesSavedList} />
     </main>
   );
 }
+)
 
-export default SavedMovies;
+export default SavedMoviess;

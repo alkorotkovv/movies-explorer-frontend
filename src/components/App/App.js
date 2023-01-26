@@ -35,9 +35,12 @@ function App() {
   const [moviesList, setMoviesList] = React.useState([]);
   const [moviesSavedList, setMoviesSavedList] = React.useState([]);
 
-  
+
+  /*
   React.useEffect(() => {
+    //console.log("логгедин")
     if (loggedIn) {
+      console.log("логгедин делаем запрос")
       api.getUserByToken(localStorage.getItem('token'))
       .then((res) => {
         const {_id, name, email} = res.data;
@@ -48,14 +51,19 @@ function App() {
       })
     }
   }, [loggedIn])
+  */
+  
   
   React.useEffect(() => {
     checkToken();
   }, [])
+  
 
   //Функция проверки токена пользователя
   function checkToken() {
-    if (localStorage.getItem('token')) {
+    //console.log(loggedIn)
+    if ((localStorage.getItem('token')) && (!loggedIn)) {
+      //console.log("чектокен делаем запрос")
       api.getUserByToken(localStorage.getItem('token'))
         .then(res => {
           if (res.data) {
@@ -72,7 +80,6 @@ function App() {
               default:
                 history.push(location);
             }
-            //history.push("/movies");
           }
           else {
             history.push("/signin");
@@ -143,7 +150,6 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
         setTooltip({error: err.statusCode, text: err.message})
         setIsTooltipOpen(true);
       })  
@@ -240,69 +246,30 @@ function App() {
     console.log("likeeeeeee")
     console.log(data)
     api.saveMovie(data)
-          .then((res)=> {
-            console.log("сохраняем")
-            console.log(res)
-          })
-          .catch((err) => {
-            setTooltip({error: err.statusCode, text: err.message})
-            setIsTooltipOpen(true);
-          })
-    /*
-    api.getSavedMovies()
       .then((res)=> {
-        console.log("сохраненные уже")
-        const savedMovies = res.data;
-        console.log(savedMovies)
-        const isLiked = savedMovies.some(movie => movie.movieId === data.movieId);
-        const sameMovies = savedMovies.filter(movie => movie.movieId === data.movieId);
-        const sameId = sameMovies.map(movie => movie._id);
-        console.log(isLiked)
-        console.log("такие же фильмы")
-        console.log(sameMovies)
-        console.log("такие же ids")
-        console.log(sameId)
-        if (isLiked) {
-          sameId.forEach(id => {
-            console.log("такой же id"); 
-            console.log(id)
-            api.deleteMovie(id)
-            .then((res)=> {
-              console.log("удаляем")
-              console.log(res)
-            })
-            .catch((err) => {
-              setTooltip({error: err.statusCode, text: err.message})
-              setIsTooltipOpen(true);
-            })
-          })
-        }
-        else {
-          api.saveMovie(data)
-          .then((res)=> {
-            console.log("сохраняем")
-            console.log(res)
-          })
-          .catch((err) => {
-            setTooltip({error: err.statusCode, text: err.message})
-            setIsTooltipOpen(true);
-          })
-        }
+        console.log("сохраняем")
+        console.log(res)
+        getSavedFilms()
       })
       .catch((err) => {
         setTooltip({error: err.statusCode, text: err.message})
         setIsTooltipOpen(true);
       })
-    /*
-    api.saveMovie(data)
-    .then((res)=> {
-      console.log(res)
-    })
-    .catch((err) => {
-      setTooltip({error: err.statusCode, text: err.message})
-      setIsTooltipOpen(true);
-    })
-    */
+  }
+
+  function handleUnlikeFilm(id) {
+    console.log("unlikeeeeeee")
+    console.log(id)
+    api.deleteMovie(id)
+      .then((res)=> {
+        console.log("удаляем")
+        console.log(res)
+        getSavedFilms()
+      })
+      .catch((err) => {
+        setTooltip({error: err.statusCode, text: err.message})
+        setIsTooltipOpen(true);
+      })
   }
 
   function getSavedFilms() {
@@ -355,10 +322,10 @@ function App() {
             onSubmit={handleFilmSubmit}
             onSwitch={handleFilmSwitch}
             isShort={isShort}
-            //moviesList={moviesList}
             moviesSavedList={moviesSavedList}
             getSavedFilms = {getSavedFilms}
             onLike={handleLikeFilm}
+            onUnlike={handleUnlikeFilm}
           />
           <Footer />
         </Route>
@@ -371,10 +338,10 @@ function App() {
             onSubmit={handleFilmSavedSubmit}
             onSwitch={handleFilmSavedSwitch}
             isShort={isShortSaved}
-            //moviesList={moviesSavedList}
             moviesSavedList={moviesSavedList}
             getSavedFilms = {getSavedFilms}
             onLike={handleLikeFilm}
+            onUnlike={handleUnlikeFilm}
           />
           <Footer />
         </Route>
