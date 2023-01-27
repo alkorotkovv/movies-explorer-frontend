@@ -15,15 +15,15 @@ function Movies(props) {
     setFilter(getFilter());
     setMovies(getMoviesList(filter));
     setSavedMovies(getSavedMoviesList(filter));
-  },[props])
+  },[])
 
   React.useEffect(() => {
-    console.log("поменялся фильтр")
-    console.log(filter)
+    console.log("Movies")
+    console.log(props)
+    setFilter(getFilter());
     setMovies(getMoviesList(filter));
     setSavedMovies(getSavedMoviesList(filter));
-  },[filter])
-
+  },[props, filter])
 
   //Функция получения фильтра из localstorage
   function getFilter() {

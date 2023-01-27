@@ -6,12 +6,21 @@ const SavedMoviess = React.memo((props) => {
 
   console.log(props)
 
-  const filter = getFilter()
-  const movies = getSavedMoviesList(filter)
+  const [filter, setFilter] = React.useState(getFilter());
+  const [savedMovies, setSavedMovies] = React.useState([]);
+  //const filter = getFilter()
+  //const movies = getSavedMoviesList(filter)
   
   React.useEffect(() => {
     props.onSubmit({filter: ""});
+    setFilter(getFilter());
+    setSavedMovies(getSavedMoviesList(filter));
   }, [])
+
+  React.useEffect(() => {
+    setFilter(getFilter());
+    setSavedMovies(getSavedMoviesList(filter));
+  }, [props])
    
   //Функция получения фильмов для отрисовки (уже отсортированных)
   function getSavedMoviesList(filter) {        
@@ -30,7 +39,7 @@ const SavedMoviess = React.memo((props) => {
     <main className="movies">
       <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch} filter={filter} />
       <MoviesCardList 
-        cards={movies} 
+        cards={savedMovies} 
         isShort={props.isShort} 
         onLike={props.onLike} 
         onUnlike={props.onUnlike}

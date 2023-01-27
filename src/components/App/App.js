@@ -115,10 +115,13 @@ function App() {
         console.log("результат:");
         console.log(res);
         if (res.data) {
+          handleLoginSubmit(data);
+          /*
           setTimeout(() => {
             setLoggedIn(true);
             history.push("/movies");
           }, 1000);
+          */
         }
         else {
           setTooltip({error: res.statusCode, text: res.message})
