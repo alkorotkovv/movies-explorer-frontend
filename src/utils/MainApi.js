@@ -129,7 +129,7 @@ class MainApi {
 
 
 const api = new MainApi({
-  baseUrl: 'https://movies.alkorotkovv.nomoredomains.club'
+  baseUrl: 'https://api.movies.alkorotkovv.nomoredomains.club'
 });
 
 export default api;
