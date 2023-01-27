@@ -4,12 +4,13 @@ import burgerLogo from '../../images/burger.svg';
 
 function Header(props) {
  
+  let block;
+  const location = useLocation().pathname;  
+
+  //Обработчик клика на бургер
   function handleBurgerClick() {
     props.onOpenMenu();
   }
-
-  const location = useLocation().pathname;
-  let block;
 
   // eslint-disable-next-line default-case
   switch (location) {

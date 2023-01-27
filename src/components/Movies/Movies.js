@@ -10,16 +10,12 @@ function Movies(props) {
   const [savedMovies, setSavedMovies] = React.useState([]);
 
   React.useEffect(() => {
-    console.log("Movies")
-    console.log(props)
     setFilter(getFilter());
     setMovies(getMoviesList(filter));
     setSavedMovies(getSavedMoviesList(filter));
   },[])
 
   React.useEffect(() => {
-    console.log("Movies")
-    console.log(props)
     setFilter(getFilter());
     setMovies(getMoviesList(filter));
     setSavedMovies(getSavedMoviesList(filter));
@@ -49,14 +45,14 @@ function Movies(props) {
     <main className="movies">
       <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch} filter={filter} />
       <Preloader isVisible={props.isLoading} />
-        <MoviesCardList 
-          cards={movies} 
-          filter={filter}
-          isShort={props.isShort} 
-          onLike={props.onLike} 
-          onUnlike={props.onUnlike}
-          //getSavedFilms={props.getSavedFilms} 
-          moviesSavedList={savedMovies} />
+      <MoviesCardList 
+        cards={movies} 
+        filter={filter}
+        isShort={props.isShort} 
+        onLike={props.onLike} 
+        onUnlike={props.onUnlike}
+        //getSavedFilms={props.getSavedFilms} 
+        moviesSavedList={savedMovies} />
     </main>
   );
   

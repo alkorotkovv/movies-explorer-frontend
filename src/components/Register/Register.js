@@ -14,8 +14,6 @@ function Register(props) {
     setIsValid(inputName.isValid && inputEmail.isValid && inputPassword.isValid);
   }, [inputName.isValid, inputEmail.isValid, inputPassword.isValid]);
 
-  
-
   return (
     <main className="register">
       <Form type="auth" name="register" onSubmit={props.onSubmit} inName={inputName.value} inEmail={inputEmail.value} inPassword={inputPassword.value}>

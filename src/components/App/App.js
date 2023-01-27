@@ -40,7 +40,6 @@ function App() {
 
   
   React.useEffect(() => {
-    //console.log("логгедин")
     if (loggedIn) {
       console.log("логгедин делаем запрос")
       api.getUserByToken(localStorage.getItem('token'))
@@ -53,19 +52,14 @@ function App() {
       })
     }
   }, [loggedIn])
-  
-  
-  
+    
   React.useEffect(() => {
     checkToken();
-  }, [])
-  
+  }, [])  
 
   //Функция проверки токена пользователя
   function checkToken() {
-    //console.log(loggedIn)
     if (localStorage.getItem('token')) {
-      //console.log("чектокен делаем запрос")
       api.getUserByToken(localStorage.getItem('token'))
         .then(res => {
           if (res.data) {
@@ -95,14 +89,17 @@ function App() {
     }
   }
 
+  //Обработчик открытия меню
   function handleOpenMenu() {
     setIsMenuVisible(true);
   }
 
+  //Обработчик закрытия меню
   function handleCloseMenu() {
     setIsMenuVisible(false);
   }
 
+  //Закрытие всплывающего окна
   function closeTooltip() {
     setIsTooltipOpen(false);
   }
@@ -112,16 +109,8 @@ function App() {
     const {name, email, password} = data;
     api.registerUser(name, email, password)
       .then((res) => {
-        console.log("результат:");
-        console.log(res);
         if (res.data) {
           handleLoginSubmit(data);
-          /*
-          setTimeout(() => {
-            setLoggedIn(true);
-            history.push("/movies");
-          }, 1000);
-          */
         }
         else {
           setTooltip({error: res.statusCode, text: res.message})
@@ -140,8 +129,6 @@ function App() {
     const {email, password} = data;
     api.loginUser(email, password)
       .then((res) => {
-        console.log("результат:");
-        console.log(res);
         if (res.token) {
           localStorage.setItem('token', res.token);
           setTimeout(() => {
@@ -160,13 +147,11 @@ function App() {
       })  
   }
 
-  //Обработчик сабмита формы входа
+  //Обработчик сабмита формы редактирования профиля
   function handleProfileSubmit(data) {
     const {name, email} = data;
     api.setUserInfo(name, email)
       .then((res) => {
-        console.log("результат:");
-        console.log(res);
         if (res.data) {
           setCurrentUser({name, email});
         }
@@ -197,8 +182,6 @@ function App() {
 
   //Обработчик сабмита формы поиска фильмов
   function handleFilmSubmit(data) {
-    console.log("нажали искать")
-    console.log(data)
     const {filter} = data;
     if (filter === "") {
       setTooltip({error: "", text: "Нужно ввести ключевое слово"})
@@ -251,8 +234,8 @@ function App() {
     setIsShortSaved(isChecked);
   }
   
+  //Обработчик нажатия лайка
   function handleLikeFilm(data) {
-    //console.log(data)    
     api.saveMovie(data)
       .then((res)=> {
         const newMoviesSavedList = moviesSavedList.slice()
@@ -267,6 +250,7 @@ function App() {
       })
   }
 
+  //Обработчик нажатия дизлайка
   function handleUnlikeFilm(data) {
     api.deleteMovie(data._id)
       .then((res)=> {
@@ -281,23 +265,12 @@ function App() {
       })
   }
 
-  function getSavedFilms() {
-    api.getSavedMovies()
-      .then((res) => {
-        setMoviesSavedList(res.data);
-        localStorage.setItem("filmsSaved", JSON.stringify(res.data));
-      })
-      .catch((err) => {
-        setTooltip({error: err.statusCode, text: err.message})
-        setIsTooltipOpen(true);
-      })
-  }
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="page">      
-      <InfoTooltip isOpen={isTooltipOpen} onClose={closeTooltip} title={tooltip.error} subtitle={tooltip.text} />
-      
+      <InfoTooltip isOpen={isTooltipOpen} onClose={closeTooltip} title={tooltip.error} subtitle={tooltip.text} />      
       <Menu isOpen ={isMenuVisible} onClose={handleCloseMenu} />
       <Switch>
         <Route exact path="/">
@@ -334,7 +307,6 @@ function App() {
             isShort={isShort}
             moviesList={moviesList}
             moviesSavedList={moviesSavedList}
-            getSavedFilms = {getSavedFilms}
             onLike={handleLikeFilm}
             onUnlike={handleUnlikeFilm}
             isLoading={isLoading}
@@ -351,7 +323,6 @@ function App() {
             onSwitch={handleFilmSavedSwitch}
             isShort={isShortSaved}
             moviesSavedList={moviesSavedList}
-            getSavedFilms = {getSavedFilms}
             onLike={handleLikeFilm}
             onUnlike={handleUnlikeFilm}
             isLoading={isLoading}

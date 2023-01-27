@@ -5,6 +5,7 @@ import useInput from '../../utils/hooks/useInput';
 import CurrentUserContext from '../../context/CurrentUserContext.js';
 
 function Profile(props) {
+
   const currentUser = React.useContext(CurrentUserContext);
 
   const [isValid, setIsValid] = React.useState(false);
@@ -16,11 +17,10 @@ function Profile(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputEmail.value, inputName.value, currentUser.name, currentUser.email]);
 
+  //Обработчик клика выхода из аккаунта
   function handleClick() {
     props.onExit();
   }
-
-  console.log(isValid)
 
   return (
     <main className="profile">

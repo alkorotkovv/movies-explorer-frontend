@@ -2,6 +2,8 @@ import React from 'react';
 
 function MoviesCard(props) {
   
+  let isLiked = props.moviesSavedList.some(movie => movie.movieId === props.movieId);
+
   const movieData ={
     movieId: props.movieId,
     country: props.country,
@@ -18,8 +20,6 @@ function MoviesCard(props) {
     year: props.year
   }
 
-  let isLiked = props.moviesSavedList.some(movie => movie.movieId === props.movieId);
-
   //Обработчик нажатия на лайк
   function handleLikeClick() {
     if (isLiked) {
@@ -31,8 +31,8 @@ function MoviesCard(props) {
     }
   }
 
+  //Обработчик клика на карточку
   function handleLogoClick() {
-    console.log(props.trailerLink)
     window.open(props.trailerLink);
   }
 

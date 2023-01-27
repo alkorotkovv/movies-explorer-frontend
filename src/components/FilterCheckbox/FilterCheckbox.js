@@ -11,18 +11,16 @@ function FilterCheckbox(props) {
   switch (useLocation().pathname) {
     case "/movies":
       isShort = JSON.parse(localStorage.getItem("isShort"))
-      break;
+    break;
     case "/saved-movies":
       isShort = JSON.parse(localStorage.getItem("isShortSaved"))
-      break;
+    break;
     default:
       isShort = false
-      break;
+    break;
   }
   
-  
-  //console.log(checkbox.checked)
-
+  //Обработчик клика на свитч
   function handleClick() {
     isShort = !isShort;
     props.onSwitch(isShort)

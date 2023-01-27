@@ -4,35 +4,15 @@ import closeLogo from '../../images/close.svg';
 
 function Menu(props) {
 
+  //Обработчик клика
   function handleClick(evt) {
     if ( (evt.target.classList.contains('menu_visible')) || (evt.target.classList.contains('menu__item')) )
       handleClose();
   }
 
+  //Обработчик закрытия меню
   function handleClose() {
       props.onClose();
-  }
-
-  const location = useLocation();
-  let block;
-
-  switch (location.pathname) {
-    case "/sign-in":
-      block = (
-        <Link to="/sign-up" className="menu__item" title="Зарегистрироваться">Регистрация</Link>
-      )
-      break;
-    case "/sign-up":
-
-      block = (
-        <Link to="/sign-in" className="menu__item" title="Войти">Войти</Link>
-      )
-      break;
-    case "/":
-      block = (
-        <button className="menu__item" title="Выйти">Выйти</button>
-      )
-      break;
   }
 
   return (

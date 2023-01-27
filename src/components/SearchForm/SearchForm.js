@@ -4,11 +4,9 @@ import useInput from '../../utils/hooks/useInput';
 
 function SearchForm(props) {
 
-  console.log("SearchForm");
-  console.log(props);
-
   const inputFilm = useInput(props.filter, false);
 
+  //Обработчик клика на Поиск фильма
   function handleSubmit(evt) {
     evt.preventDefault();
     const dataObject = {filter: inputFilm.value}

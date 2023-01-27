@@ -4,8 +4,6 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props) {
 
-  
-
   let block;
   const location = useLocation().pathname;
 
@@ -99,8 +97,6 @@ function MoviesCardList(props) {
           year = {element.year}
 
           moviesSavedList={props.moviesSavedList}
-          //getSavedFilms = {props.getSavedFilms}
-          //isLiked={false}
           onLike={props.onLike}
           onUnlike={props.onUnlike}
         />
@@ -126,8 +122,6 @@ function MoviesCardList(props) {
           year = {element.year}
 
           moviesSavedList={props.moviesSavedList}
-          //getSavedFilms = {props.getSavedFilms}
-          //isLiked={true}
           onLike={props.onLike}
           onUnlike={props.onUnlike}
         />
