@@ -334,6 +334,7 @@ function App() {
             onSubmit={handleFilmSubmit}
             onSwitch={handleFilmSwitch}
             isShort={isShort}
+            moviesList={moviesList}
             moviesSavedList={moviesSavedList}
             getSavedFilms = {getSavedFilms}
             onLike={handleLikeFilm}

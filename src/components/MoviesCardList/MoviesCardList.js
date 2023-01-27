@@ -6,62 +6,61 @@ function MoviesCardList(props) {
 
   //console.log ("props in cardlist")
   //console.log (props)
-  let isFinish = false;
+  let block;
+  const location = useLocation().pathname;
 
   const [windowSize, setWindowsSize] = React.useState(window.screen.width);
   const [cardsCount, setCardsCount] = React.useState(0);
   const [needShowCount, setNeedShowCount] = React.useState(0);
   const [cards, setCards] = React.useState([]);
   const [clicks, setClicks] = React.useState(0);
-  //const [clicksDesktop, setClicksDesktop] = React.useState(0);
-  //const [clicksPad, setClicksPad] = React.useState(0);
-  //const [clicksMobile, setClicksMobile] = React.useState(0);
-  console.log("12222222")
+  
 
-
+  //Добавление слушателя при монтировании
   React.useEffect(() => {
-    setInitialSettings();
     window.addEventListener('resize', handleResize);
-    //return window.removeEventListener('resize', getWindowWidth);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [])
 
+  //При повторных запросах на поиск фильма применяем стандартные настройки - количество отображаемых карточек = по умолчанию (сбрасывается)
   React.useEffect(() => {
-    //setNeedShowCount(cardsCount + 3)
-    //console.log(cardsCount);
-    if (window.innerWidth > 1300) {
-      setCards(props.cards.slice(0, cardsCount))
+    setInitialSettings();
+  }, [props.cards])
+
+
+  React.useEffect(() => {
+    if (window.screen.width > 1300) {
+      setCards(props.cards.slice(0, cardsCount - cardsCount % 3))
     }
-    else if (window.innerWidth > 768) {
-      setCards(props.cards.slice(0, cardsCount))
+    else if (window.screen.width > 768) {
+      setCards(props.cards.slice(0, cardsCount - cardsCount % 2))
     }
     else {
       setCards(props.cards.slice(0, cardsCount))
-    }    
-  }, [cardsCount])
+    }
+  }, [cardsCount, props.cards])
 
+  //Устанавливаем количество карточек, которое необходимо отобразить
   React.useEffect(() => {
-    setSettings();
-  }, [clicks, windowSize])
+    setCardsCount(needShowCount)
+  }, [clicks, windowSize, needShowCount])
 
-  React.useEffect(() => {
-    setSettings();
-    if (needShowCount >= props.cards.length)
-      isFinish = true;
-    console.log(isFinish);
-
-  }, [needShowCount])
-
+  //Функция обработчик изменения ширины окна
   function handleResize() {
     setWindowsSize(window.screen.width);
   }
+  
 
   function setInitialSettings() { 
-    if (window.innerWidth > 1300) {
+    console.log("применяем стд настройки")
+    if (window.screen.width > 1300) {
       setCardsCount(12);
       setCards(props.cards.slice(0, 12))
       setNeedShowCount(12)
     }
-    else if (window.innerWidth > 768) {
+    else if (window.screen.width > 768) {
       setCardsCount(8);
       setCards(props.cards.slice(0, 8))
       setNeedShowCount(8)
@@ -73,55 +72,23 @@ function MoviesCardList(props) {
     }    
   }
 
-  
-  function setSettings() {
-    console.log("settings")
-    console.log(needShowCount)
+  //Функция обработчик клика на кнопку "Ещё"
+  function handleMoreClick() {    
     if (window.innerWidth > 1300) {
-      setCardsCount(12 + 3*clicks)
-      setCardsCount(needShowCount)
-    }
-    else if (window.innerWidth > 768) {
-      setCardsCount(8 + 2*clicks)
-      setCardsCount(needShowCount)
-    }
-    else {
-      setCardsCount(5 + clicks)
-      setCardsCount(needShowCount)
-    }
-    
-  }
-  
-
-  
-  function handleMoreClick() {
-    //console.log("click")
-    //console.log(cardsCount)
-    
-    if (window.innerWidth > 1300) {
-      //setClicksDesktop(clicksDesktop + 1)
-      //setCardsCount(cardsCount + 3)
       setNeedShowCount(cardsCount + 3)
     }
     else if (window.innerWidth > 768) {
-      //setClicksPad(clicksPad + 1)
-      //setCardsCount(cardsCount + 2)
       setNeedShowCount(cardsCount + 2)
     }
     else {
-      //setClicksMobile(clicksMobile + 1)
-      //setCardsCount(cardsCount + 1)
       setNeedShowCount(cardsCount + 1)
     }
-    setClicks(clicks + 1)
+    setClicks(clicks + 1);
   }
 
 
 
-  const location = useLocation().pathname;
-
-  let block;
-
+  
   if (!props.isShort) {
     block = 
       cards.map((element, index) => 
