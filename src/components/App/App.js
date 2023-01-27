@@ -265,14 +265,9 @@ function App() {
   }
 
   function handleUnlikeFilm(data) {
-    console.log("unlikeeeeeee")
-    console.log(data)
     api.deleteMovie(data._id)
       .then((res)=> {
-        console.log("удаляем")
-        console.log(res)
-        const newMoviesSavedList = moviesSavedList.filter((item) => (item._id !== data._id))
-        //console.log(newMoviesSavedList)
+        const newMoviesSavedList = JSON.parse(localStorage.getItem("filmsSaved")).filter((item) => (item._id !== data._id)) || [];
         setMoviesSavedList(newMoviesSavedList);
         localStorage.setItem("filmsSaved", JSON.stringify(newMoviesSavedList));
         //getSavedFilms()

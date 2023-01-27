@@ -4,13 +4,17 @@ import SearchForm from '../SearchForm/SearchForm.js';
 
 function Movies(props) {
 
+  console.log("movies")
+
   React.useEffect(() => {
     getFilter();
     getMoviesList();
+    getSavedMoviesList();
   }, [])
 
   const filter = getFilter()
   const movies = getMoviesList(filter)
+  const savedMovies = getSavedMoviesList(filter)
    
   //Функция получения фильмов для отрисовки (уже отсортированных)
   function getMoviesList(filter) {    
@@ -24,6 +28,12 @@ function Movies(props) {
     let filter = JSON.parse(localStorage.getItem("filter")) || "";
     return filter;
   }
+
+  function getSavedMoviesList(filter) {    
+    const movies = JSON.parse(localStorage.getItem("filmsSaved")) || [];
+    const filterFilms = movies.filter(element => element.nameRU.includes(filter));
+    return filterFilms;
+  }
   
   
 
@@ -36,7 +46,7 @@ function Movies(props) {
         onLike={props.onLike} 
         onUnlike={props.onUnlike}
         //getSavedFilms={props.getSavedFilms} 
-        moviesSavedList={props.moviesSavedList} />
+        moviesSavedList={savedMovies} />
     </main>
   );
 }

@@ -11,9 +11,9 @@ function MoviesCardList(props) {
 
   const [windowSize, setWindowsSize] = React.useState(window.screen.width);
   const [cardsCount, setCardsCount] = React.useState(0);
-  const [needShowCount, setNeedShowCount] = React.useState(0);
   const [cards, setCards] = React.useState([]);
   const [clicks, setClicks] = React.useState(0);
+  const [addedCount, setAddedCount] = React.useState(0);
   
 
   //Добавление слушателя при монтировании
@@ -24,13 +24,20 @@ function MoviesCardList(props) {
     };
   }, [])
 
+  //Функция обработчик изменения ширины окна
+  function handleResize() {
+    setWindowsSize(window.screen.width);
+  }
+
   //При повторных запросах на поиск фильма применяем стандартные настройки - количество отображаемых карточек = по умолчанию (сбрасывается)
   React.useEffect(() => {
     setInitialSettings();
   }, [props.cards])
 
-
   React.useEffect(() => {
+    //console.log("че то поменялось в массиве карт или количестве")
+    //console.log(cardsCount)
+    //console.log(cards)
     if (window.screen.width > 1300) {
       setCards(props.cards.slice(0, cardsCount - cardsCount % 3))
     }
@@ -42,15 +49,8 @@ function MoviesCardList(props) {
     }
   }, [cardsCount, props.cards])
 
-  //Устанавливаем количество карточек, которое необходимо отобразить
-  React.useEffect(() => {
-    setCardsCount(needShowCount)
-  }, [clicks, windowSize, needShowCount])
-
-  //Функция обработчик изменения ширины окна
-  function handleResize() {
-    setWindowsSize(window.screen.width);
-  }
+  
+  
   
 
   function setInitialSettings() { 
@@ -58,30 +58,40 @@ function MoviesCardList(props) {
     if (window.screen.width > 1300) {
       setCardsCount(12);
       setCards(props.cards.slice(0, 12))
-      setNeedShowCount(12)
+      //setNeedShowCount(12)
     }
     else if (window.screen.width > 768) {
       setCardsCount(8);
       setCards(props.cards.slice(0, 8))
-      setNeedShowCount(8)
+      //setNeedShowCount(8)
     }
     else {
       setCardsCount(5);
       setCards(props.cards.slice(0, 5))
-      setNeedShowCount(5)
+      //setNeedShowCount(5)
     }    
   }
 
   //Функция обработчик клика на кнопку "Ещё"
   function handleMoreClick() {    
+    console.log("кликнули")
+    console.log(cards)
+    console.log(cardsCount)
+
     if (window.innerWidth > 1300) {
-      setNeedShowCount(cardsCount + 3)
+      //setNeedShowCount(cardsCount + 3)
+      setCardsCount(cardsCount + (3 - cardsCount%3))
+      setAddedCount(3 - cardsCount % 3)
     }
     else if (window.innerWidth > 768) {
-      setNeedShowCount(cardsCount + 2)
+      //setNeedShowCount(cardsCount + 2)
+      setCardsCount(cardsCount + (2 - cardsCount%2))
+      setAddedCount(2 - cardsCount % 2)
     }
     else {
-      setNeedShowCount(cardsCount + 1)
+      //setNeedShowCount(cardsCount + 1)
+      setCardsCount(cardsCount + 1)
+      setAddedCount(1)
     }
     setClicks(clicks + 1);
   }
@@ -151,7 +161,7 @@ function MoviesCardList(props) {
         block
       }
     </ul>
-    <button className={"movies__button-more" + (needShowCount >= props.cards.length? " movies__button-more_unvisible" : "")} type="button" onClick={handleMoreClick} >Ещё</button>
+    <button className={"movies__button-more" + (cardsCount >= props.cards.length? " movies__button-more_unvisible" : "")} type="button" onClick={handleMoreClick} >Ещё</button>
     </>
   );
 }
