@@ -1205,6 +1205,9 @@
   line-height: 1.25;
   transition: opacity 0.3s linear;
 }
+.movies__button-more_unvisible {
+  display: none;
+}
 .movies__button-more:hover {
   cursor: pointer;
   opacity: 0.7;

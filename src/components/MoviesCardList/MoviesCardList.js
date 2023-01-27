@@ -6,11 +6,17 @@ function MoviesCardList(props) {
 
   //console.log ("props in cardlist")
   //console.log (props)
+  let isFinish = false;
 
   const [windowSize, setWindowsSize] = React.useState(window.screen.width);
   const [cardsCount, setCardsCount] = React.useState(0);
+  const [needShowCount, setNeedShowCount] = React.useState(0);
   const [cards, setCards] = React.useState([]);
   const [clicks, setClicks] = React.useState(0);
+  //const [clicksDesktop, setClicksDesktop] = React.useState(0);
+  //const [clicksPad, setClicksPad] = React.useState(0);
+  //const [clicksMobile, setClicksMobile] = React.useState(0);
+  console.log("12222222")
 
 
   React.useEffect(() => {
@@ -20,8 +26,8 @@ function MoviesCardList(props) {
   }, [])
 
   React.useEffect(() => {
-    console.log();
-    console.log(cardsCount);
+    //setNeedShowCount(cardsCount + 3)
+    //console.log(cardsCount);
     if (window.innerWidth > 1300) {
       setCards(props.cards.slice(0, cardsCount))
     }
@@ -35,7 +41,15 @@ function MoviesCardList(props) {
 
   React.useEffect(() => {
     setSettings();
-  }, [windowSize, clicks])
+  }, [clicks, windowSize])
+
+  React.useEffect(() => {
+    setSettings();
+    if (needShowCount >= props.cards.length)
+      isFinish = true;
+    console.log(isFinish);
+
+  }, [needShowCount])
 
   function handleResize() {
     setWindowsSize(window.screen.width);
@@ -45,29 +59,35 @@ function MoviesCardList(props) {
     if (window.innerWidth > 1300) {
       setCardsCount(12);
       setCards(props.cards.slice(0, 12))
+      setNeedShowCount(12)
     }
     else if (window.innerWidth > 768) {
       setCardsCount(8);
       setCards(props.cards.slice(0, 8))
+      setNeedShowCount(8)
     }
     else {
       setCardsCount(5);
       setCards(props.cards.slice(0, 5))
+      setNeedShowCount(5)
     }    
   }
 
   
   function setSettings() {
     console.log("settings")
-    console.log(cardsCount)
+    console.log(needShowCount)
     if (window.innerWidth > 1300) {
-      setCardsCount(12 + clicks)
+      setCardsCount(12 + 3*clicks)
+      setCardsCount(needShowCount)
     }
     else if (window.innerWidth > 768) {
-      setCardsCount(8 + clicks)
+      setCardsCount(8 + 2*clicks)
+      setCardsCount(needShowCount)
     }
     else {
       setCardsCount(5 + clicks)
+      setCardsCount(needShowCount)
     }
     
   }
@@ -75,20 +95,25 @@ function MoviesCardList(props) {
 
   
   function handleMoreClick() {
-    console.log("click")
-    //setClicks(clicks + 1)
+    //console.log("click")
+    //console.log(cardsCount)
+    
     if (window.innerWidth > 1300) {
-      setCardsCount(cardsCount + 3)
-      setClicks(clicks + 3)
+      //setClicksDesktop(clicksDesktop + 1)
+      //setCardsCount(cardsCount + 3)
+      setNeedShowCount(cardsCount + 3)
     }
     else if (window.innerWidth > 768) {
-      setCardsCount(cardsCount + 2)
-      setClicks(clicks + 2)
+      //setClicksPad(clicksPad + 1)
+      //setCardsCount(cardsCount + 2)
+      setNeedShowCount(cardsCount + 2)
     }
     else {
-      setCardsCount(cardsCount + 1)
-      setClicks(clicks + 1)
+      //setClicksMobile(clicksMobile + 1)
+      //setCardsCount(cardsCount + 1)
+      setNeedShowCount(cardsCount + 1)
     }
+    setClicks(clicks + 1)
   }
 
 
@@ -159,7 +184,7 @@ function MoviesCardList(props) {
         block
       }
     </ul>
-    <button className="movies__button-more" type="button" onClick={handleMoreClick} >Ещё</button>
+    <button className={"movies__button-more" + (needShowCount >= props.cards.length? " movies__button-more_unvisible" : "")} type="button" onClick={handleMoreClick} >Ещё</button>
     </>
   );
 }
