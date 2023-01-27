@@ -4,25 +4,23 @@ import SearchForm from '../SearchForm/SearchForm.js';
 
 const SavedMoviess = React.memo((props) => {
 
-  React.useEffect(() => {
-    console.log("рендер сохрфильмов")
-    console.log(props)
-    getFilter();
-    getMoviesList();
-    props.onSubmit({filter: ""});
-  }, [])
+  console.log(props)
 
   const filter = getFilter()
-  const movies = getMoviesList(filter)
+  const movies = getSavedMoviesList(filter)
+  
+  React.useEffect(() => {
+    props.onSubmit({filter: ""});
+  }, [])
    
   //Функция получения фильмов для отрисовки (уже отсортированных)
-  function getMoviesList(filter) {    
+  function getSavedMoviesList(filter) {        
     const movies = JSON.parse(localStorage.getItem("filmsSaved")) || [];
-    const filterFilms = movies.filter(element => element.nameRU.includes(filter));
+    const filterFilms = movies.filter(element => element.nameRU.toUpperCase().includes(filter.toUpperCase()));
     return filterFilms;
   }
 
-  //Функция получения фильтра из локалсторейджа
+  //Функция получения фильтра из localstorage
   function getFilter() {
     let filter = JSON.parse(localStorage.getItem("filterSaved")) || "";
     return filter;

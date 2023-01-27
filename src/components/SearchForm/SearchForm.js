@@ -4,6 +4,9 @@ import useInput from '../../utils/hooks/useInput';
 
 function SearchForm(props) {
 
+  console.log("SearchForm");
+  console.log(props);
+
   const inputFilm = useInput(props.filter, false);
 
   function handleSubmit(evt) {

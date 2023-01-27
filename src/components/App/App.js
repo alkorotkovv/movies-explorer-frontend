@@ -35,8 +35,10 @@ function App() {
   const [moviesList, setMoviesList] = React.useState([]);
   const [moviesSavedList, setMoviesSavedList] = React.useState([]);
 
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  /*
+
+  
   React.useEffect(() => {
     //console.log("логгедин")
     if (loggedIn) {
@@ -51,7 +53,7 @@ function App() {
       })
     }
   }, [loggedIn])
-  */
+  
   
   
   React.useEffect(() => {
@@ -62,7 +64,7 @@ function App() {
   //Функция проверки токена пользователя
   function checkToken() {
     //console.log(loggedIn)
-    if ((localStorage.getItem('token')) && (!loggedIn)) {
+    if (localStorage.getItem('token')) {
       //console.log("чектокен делаем запрос")
       api.getUserByToken(localStorage.getItem('token'))
         .then(res => {
@@ -192,19 +194,22 @@ function App() {
 
   //Обработчик сабмита формы поиска фильмов
   function handleFilmSubmit(data) {
+    console.log("нажали искать")
+    console.log(data)
     const {filter} = data;
     if (filter === "") {
       setTooltip({error: "", text: "Нужно ввести ключевое слово"})
       setIsTooltipOpen(true);
     }
     else {
+      setIsLoading(true);
       apiMovies.getFilms()
       .then((res)=> {
-        //console.log(res)
         localStorage.setItem("films", JSON.stringify(res));
         localStorage.setItem("filter", JSON.stringify(filter));
         localStorage.setItem("isShort", JSON.stringify(isShort));
         setMoviesList(res);
+        setIsLoading(false);
       })
       .catch((err) => {
         setTooltip({error: err.statusCode, text: err.message})
@@ -216,13 +221,14 @@ function App() {
   //Обработчик сабмита формы поиска сохраненных фильмов
   function handleFilmSavedSubmit(data) {
     const {filter} = data;
+    setIsLoading(true);
     api.getSavedMovies()
     .then((res)=> {
-      //console.log(res.data)
       localStorage.setItem("filmsSaved", JSON.stringify(res.data));
       localStorage.setItem("filterSaved", JSON.stringify(filter));
       localStorage.setItem("isShortSaved", JSON.stringify(isShortSaved));
       setMoviesSavedList(res.data);
+      setIsLoading(false);
     })
     .catch((err) => {
       setTooltip({error: err.statusCode, text: err.message})
@@ -243,18 +249,12 @@ function App() {
   }
   
   function handleLikeFilm(data) {
-    console.log(data)
+    //console.log(data)    
     api.saveMovie(data)
       .then((res)=> {
-        console.log("сохраняем")
-        console.log(res)
         const newMoviesSavedList = moviesSavedList.slice()
-        
         newMoviesSavedList.push(res.data);
-        console.log("newMoviesSavedList")
-        console.log(newMoviesSavedList)
         setMoviesSavedList(newMoviesSavedList);
-        //setMoviesSavedList([data, ...moviesSavedList]);
         localStorage.setItem("filmsSaved", JSON.stringify(newMoviesSavedList));
         //getSavedFilms()
       })
@@ -334,6 +334,7 @@ function App() {
             getSavedFilms = {getSavedFilms}
             onLike={handleLikeFilm}
             onUnlike={handleUnlikeFilm}
+            isLoading={isLoading}
           />
           <Footer />
         </Route>
@@ -350,6 +351,7 @@ function App() {
             getSavedFilms = {getSavedFilms}
             onLike={handleLikeFilm}
             onUnlike={handleUnlikeFilm}
+            isLoading={isLoading}
           />
           <Footer />
         </Route>
