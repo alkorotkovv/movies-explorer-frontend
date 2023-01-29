@@ -297,4 +297,21 @@
     }
   }
 
+  &__hint {
+    margin: 0;
+    padding: 0;
+    min-height: 10px;
+    display: flex;
+    opacity: 0;
+    color: green;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.22;
+
+    &_visible {
+      display: flex;
+      opacity: 1;
+    }
+  }
+
 }

@@ -1812,6 +1812,21 @@
 .form__link_type_profile {
   color: red;
 }
+.form__hint {
+  margin: 0;
+  padding: 0;
+  min-height: 10px;
+  display: flex;
+  opacity: 0;
+  color: green;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.22;
+}
+.form__hint_visible {
+  display: flex;
+  opacity: 1;
+}
 
 .register {
   margin: 0;

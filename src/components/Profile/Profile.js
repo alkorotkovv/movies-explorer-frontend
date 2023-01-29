@@ -6,6 +6,9 @@ import CurrentUserContext from '../../context/CurrentUserContext.js';
 
 function Profile(props) {
 
+  console.log("mount profile")
+  console.log(props)
+
   const currentUser = React.useContext(CurrentUserContext);
 
   const [isValid, setIsValid] = React.useState(false);
@@ -58,6 +61,7 @@ function Profile(props) {
             <span className="form__span form__span_type_profile" >{inputEmail.message}</span>
           </div>
         </fieldset>
+        <p className={"form__hint" + (props.isSuccesful ? " form__hint_visible" : "" )}>Данные успешно изменены</p>
         <button 
           className={"form__save-button form__save-button_type_profile" + (isValid ? "" : " form__save-button_type_profile_disabled" )} 
           type="submit" 

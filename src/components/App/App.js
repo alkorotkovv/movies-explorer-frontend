@@ -36,6 +36,7 @@ function App() {
   const [moviesSavedList, setMoviesSavedList] = React.useState([]);
 
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isSuccesful, setIsSuccesful] = React.useState(false);
 
 
   
@@ -154,6 +155,10 @@ function App() {
       .then((res) => {
         if (res.data) {
           setCurrentUser({name, email});
+          setIsSuccesful(true);
+          setTimeout(() => {
+            setIsSuccesful(false);
+          }, 2000)
         }
         else {
           setTooltip({error: res.statusCode, text: res.message})
@@ -291,6 +296,7 @@ function App() {
           <ProtectedRoute
               path="/profile"
               loggedIn={loggedIn}
+              isSuccesful={isSuccesful}
               component={Profile}
               onSubmit={handleProfileSubmit}
               onExit={handleExitSubmit}
