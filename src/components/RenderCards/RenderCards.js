@@ -13,7 +13,7 @@ function RenderCards(props) {
     <>
     <ul className="card-list">
       {
-        props.cards.map((element, index) => 
+        props.newCards.map((element, index) => 
         <MoviesCard 
           key = {location === "/movies"? element.id : element.movieId}
           movieId = {location === "/movies"? element.id : element.movieId}
@@ -37,7 +37,7 @@ function RenderCards(props) {
       )
       }
     </ul>
-    <button className={"movies__button-more" + (props.cards.length? " movies__button-more_unvisible" : "")} type="button" onClick={props.onClick} >Ещё</button>
+    <button className={"movies__button-more" + (props.cards.length <= props.newCards.length? " movies__button-more_unvisible" : "")} type="button" onClick={props.onClick} >Ещё</button>
     </>
   );
 }

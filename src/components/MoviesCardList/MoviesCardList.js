@@ -88,19 +88,22 @@ function MoviesCardList(props) {
   //Функция обработчик клика на кнопку "Ещё"
   function handleMoreClick() {   
     if (window.innerWidth > 1300) {
+      setNewCards(props.cards.slice(0, cardsCount + (3 - cardsCount%3)))
       setCardsCount(cardsCount + (3 - cardsCount%3))
     }
     else if (window.innerWidth > 768) {
+      setNewCards(props.cards.slice(0, cardsCount + (2 - cardsCount%2)))
       setCardsCount(cardsCount + (2 - cardsCount%2))
     }
     else {
+      setNewCards(props.cards.slice(0, cardsCount + 2))
       setCardsCount(cardsCount + 2)
     }
     setClicks(clicks + 1);
   }
 
   return (
-    <RenderCards cards={newCards} isShort={props.isShort} moviesSavedList={props.moviesSavedList} onLike={props.onLike} onUnlike={props.onUnlike} />
+    <RenderCards cards={cards} newCards={newCards} onClick={handleMoreClick} isShort={props.isShort} moviesSavedList={props.moviesSavedList} onLike={props.onLike} onUnlike={props.onUnlike} />
   );
 }
 
