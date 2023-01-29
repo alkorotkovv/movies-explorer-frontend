@@ -4,8 +4,8 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 function RenderCards(props) {
 
-  console.log("rendercards")
-  console.log(props)
+  //console.log("rendercards")
+  //console.log(props)
 
   const location = useLocation().pathname;
 
@@ -37,7 +37,10 @@ function RenderCards(props) {
       )
       }
     </ul>
-    <button className={"movies__button-more" + (props.cards.length <= props.newCards.length || 8 > props.newCards.length? " movies__button-more_unvisible" : "")} type="button" onClick={props.onClick} >Ещё</button>
+    <button 
+      className={"movies__button-more" + (props.cards.length <= props.newCards.length || props.cardsCount > props.newCards.length? " movies__button-more_unvisible" : "")} 
+      type="button" 
+      onClick={props.onClick} >Ещё</button>
     </>
   );
 }

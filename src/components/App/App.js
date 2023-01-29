@@ -311,6 +311,7 @@ function App() {
             loggedIn={loggedIn}
             isLoading={isLoading}
             isShort={isShort}
+            
             onSubmit={handleFilmSubmit}
             onSwitch={handleFilmSwitch}            
             onLike={handleLikeFilm}

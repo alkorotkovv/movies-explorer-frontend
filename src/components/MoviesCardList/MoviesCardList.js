@@ -8,13 +8,10 @@ function MoviesCardList(props) {
   //console.log("рендер кардлист")
   //console.log(props)
 
-  
-
   //const [windowSize, setWindowsSize] = React.useState(window.screen.width);
   const [cardsCount, setCardsCount] = React.useState(0);
   const [newCards, setNewCards] = React.useState([]);
-  const [cards, setCards] = React.useState([]);
-  const [clicks, setClicks] = React.useState(0);
+  //const [clicks, setClicks] = React.useState(0);
    
   /*
   //Добавление слушателя при монтировании
@@ -37,18 +34,7 @@ function MoviesCardList(props) {
     setInitialSettings();
   }, [props.cards, props.isShort])
 
-  /*
-  React.useEffect(() => {
-    //console.log("поменялся шорт")
-    if (props.isShort) {
-      setNewCards(props.cards.filter(element => element.duration < 40))
-    }
-    else {
-      setNewCards(props.cards);
-    }
-  }, [props.cards, props.isShort])
-
-
+  
   /*
   //Заполняем массив карточек для отрисовки с учетом ширины монитора 
   //(если перешли с одного разрешения на другое, в последний ряд добавится количество карточек необходимое для ровного количества)
@@ -70,60 +56,57 @@ function MoviesCardList(props) {
     //console.log("применили инит настройки")
 
     if (window.innerWidth > 1300) {
+      setCardsCount(12);
       if (props.isShort) {
-      //setCardsCount(12);
         setNewCards(props.cards.filter(element => element.duration < 40).slice(0, 12))
-        setCardsCount(props.cards.filter(element => element.duration < 40).slice(0, 12).length);
-      //setNewCards(props.cards.slice(0, 12))
+        //setCardsCount(props.cards.filter(element => element.duration < 40).slice(0, 12).length);
       }
       else {
         setNewCards(props.cards.slice(0, 12))
-        setCardsCount(props.cards.slice(0, 12).length);
+        //setCardsCount(props.cards.slice(0, 12).length);
       }
     }
     else if (window.innerWidth > 768) {
+      setCardsCount(8);
       if (props.isShort) {
-        //setCardsCount(12);
         setNewCards(props.cards.filter(element => element.duration < 40).slice(0, 8))
-        setCardsCount(props.cards.filter(element => element.duration < 40).slice(0, 8).length);
+        //setCardsCount(props.cards.filter(element => element.duration < 40).slice(0, 8).length);
       }
       else {
         setNewCards(props.cards.slice(0, 8))
-        setCardsCount(props.cards.slice(0, 8).length);
+        //setCardsCount(props.cards.slice(0, 8).length);
       }
     }
     else {
+      setCardsCount(5);
       if (props.isShort) {
-      //setCardsCount(12);
         setNewCards(props.cards.filter(element => element.duration < 40).slice(0, 5))
-        setCardsCount(props.cards.filter(element => element.duration < 40).slice(0, 5).length);
-      //setNewCards(props.cards.slice(0, 12))
+        //setCardsCount(props.cards.filter(element => element.duration < 40).slice(0, 5).length);
       }
       else {
         setNewCards(props.cards.slice(0, 5))
-        setCardsCount(props.cards.slice(0, 5).length);
+        //setCardsCount(props.cards.slice(0, 5).length);
       }
     }    
   }
 
   //Функция обработчик клика на кнопку "Ещё"
   function handleMoreClick() {   
-    //const cardsCount = newCards.length;
+    const cardsCount = newCards.length;
     //console.log(cardsCount)
     if (window.innerWidth > 1300) {
       setNewCards(props.cards.slice(0, cardsCount + (3 - cardsCount%3)))
-      setCardsCount(cardsCount + (3 - cardsCount%3))
-      //setCardsCount(12 + (3 - cardsCount%3))
+      //setCardsCount(cardsCount + (3 - cardsCount%3))
     }
     else if (window.innerWidth > 768) {
       setNewCards(props.cards.slice(0, cardsCount + (2 - cardsCount%2)))
-      setCardsCount(cardsCount + (2 - cardsCount%2))
+      //setCardsCount(cardsCount + (2 - cardsCount%2))
     }
     else {
       setNewCards(props.cards.slice(0, cardsCount + 2))
-      setCardsCount(cardsCount + 2)
+      //setCardsCount(cardsCount + 2)
     }
-    setClicks(clicks + 1);
+    //setClicks(clicks + 1);
   }
 
   return (

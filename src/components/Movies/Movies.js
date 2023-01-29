@@ -40,7 +40,7 @@ function Movies(props) {
   //Функция получения сохраненных фильмов из localstorage
   function getSavedMoviesList(filter) { 
     const movies = JSON.parse(localStorage.getItem("filmsSaved")) || [];
-    const filterFilms = movies.filter(element => element.nameRU.includes(filter));
+    const filterFilms = movies.filter(element => element.nameRU.toUpperCase().includes(filter.toUpperCase()));
     return filterFilms;
   }
 
