@@ -34,7 +34,7 @@ function MoviesCardList(props) {
   React.useEffect(() => {
     //console.log("mount list")
     setInitialSettings();
-  }, [])
+  }, [props.cards])
 
   React.useEffect(() => {
     //console.log("поменялся шорт")
