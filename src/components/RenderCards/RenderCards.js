@@ -37,7 +37,7 @@ function RenderCards(props) {
       )
       }
     </ul>
-    <button className={"movies__button-more" + (props.cards.length <= props.newCards.length? " movies__button-more_unvisible" : "")} type="button" onClick={props.onClick} >Ещё</button>
+    <button className={"movies__button-more" + (props.cards.length <= props.newCards.length || 8 > props.newCards.length? " movies__button-more_unvisible" : "")} type="button" onClick={props.onClick} >Ещё</button>
     </>
   );
 }
