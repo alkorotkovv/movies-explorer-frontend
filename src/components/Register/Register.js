@@ -5,6 +5,8 @@ import useInput from '../../utils/hooks/useInput';
 
 function Register(props) {
 
+  const emailRegex = "^([a-zA-Z0-9_.-]+)@([a-z0-9_.-]+)\.([a-z.]{2,6})$";
+
   const [isValid, setIsValid] = React.useState(false);
   const inputName = useInput("", false);
   const inputEmail = useInput("", false);
@@ -44,6 +46,7 @@ function Register(props) {
               value={inputEmail.value} 
               onChange={inputEmail.handleChange}
               name="email" 
+              pattern={emailRegex}
               placeholder="E-mail" 
               required 
               minLength="2" 
