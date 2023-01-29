@@ -6,9 +6,6 @@ import CurrentUserContext from '../../context/CurrentUserContext.js';
 
 function Profile(props) {
 
-  console.log("mount profile")
-  console.log(props)
-
   const currentUser = React.useContext(CurrentUserContext);
 
   const [isValid, setIsValid] = React.useState(false);

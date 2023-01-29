@@ -4,6 +4,9 @@ import SearchForm from '../SearchForm/SearchForm.js';
 
 const SavedMoviess = React.memo((props) => {
 
+  //console.log("рендер сейвед мовиес")
+  //console.log(props)
+
   const [filter, setFilter] = React.useState(getFilter());
   const [savedMovies, setSavedMovies] = React.useState([]);
   
@@ -16,7 +19,7 @@ const SavedMoviess = React.memo((props) => {
   React.useEffect(() => {
     setFilter(getFilter());
     setSavedMovies(getSavedMoviesList(filter));
-  }, [props])
+  }, [props, filter])
    
   //Функция получения фильмов для отрисовки (уже отфильтрованных)
   function getSavedMoviesList(filter) {        

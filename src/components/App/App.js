@@ -42,7 +42,6 @@ function App() {
   
   React.useEffect(() => {
     if (loggedIn) {
-      console.log("логгедин делаем запрос")
       api.getUserByToken(localStorage.getItem('token'))
       .then((res) => {
         const {_id, name, email} = res.data;
@@ -132,6 +131,8 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem('token', res.token);
+          //Подгружаем сохраненные фильмы в локалсторейдж
+          handleFilmSavedSubmit({filter: ""});
           setTimeout(() => {
             setLoggedIn(true);
             history.push("/movies");
@@ -199,7 +200,7 @@ function App() {
         localStorage.setItem("films", JSON.stringify(res));
         localStorage.setItem("filter", JSON.stringify(filter));
         localStorage.setItem("isShort", JSON.stringify(isShort));
-        setMoviesList(res);
+        //setMoviesList(res);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -305,17 +306,15 @@ function App() {
         <Route path="/movies">
           <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
           <ProtectedRoute
-            path="/movies"
-            loggedIn={loggedIn}
+            path="/movies"            
             component={Movies}
-            onSubmit={handleFilmSubmit}
-            onSwitch={handleFilmSwitch}
-            isShort={isShort}
-            moviesList={moviesList}
-            moviesSavedList={moviesSavedList}
-            onLike={handleLikeFilm}
-            onUnlike={handleUnlikeFilm}
+            loggedIn={loggedIn}
             isLoading={isLoading}
+            isShort={isShort}
+            onSubmit={handleFilmSubmit}
+            onSwitch={handleFilmSwitch}            
+            onLike={handleLikeFilm}
+            onUnlike={handleUnlikeFilm}            
           />
           <Footer />
         </Route>
@@ -323,15 +322,15 @@ function App() {
           <Header onOpenMenu={handleOpenMenu} loggedIn={loggedIn} />
           <ProtectedRoute
             path="/saved-movies"
-            loggedIn={loggedIn}
             component={SavedMovies}
-            onSubmit={handleFilmSavedSubmit}
-            onSwitch={handleFilmSavedSwitch}
+            loggedIn={loggedIn}
+            isLoading={isLoading}
             isShort={isShortSaved}
             moviesSavedList={moviesSavedList}
+            onSubmit={handleFilmSavedSubmit}
+            onSwitch={handleFilmSavedSwitch}
             onLike={handleLikeFilm}
-            onUnlike={handleUnlikeFilm}
-            isLoading={isLoading}
+            onUnlike={handleUnlikeFilm}            
           />
           <Footer />
         </Route>

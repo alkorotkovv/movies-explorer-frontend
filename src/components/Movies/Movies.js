@@ -5,6 +5,9 @@ import SearchForm from '../SearchForm/SearchForm.js';
 
 function Movies(props) {
 
+  //console.log("рендер мовиес")
+  //console.log(props)
+
   const [filter, setFilter] = React.useState(getFilter());
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
@@ -46,8 +49,7 @@ function Movies(props) {
       <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch} filter={filter} />
       <Preloader isVisible={props.isLoading} />
       <MoviesCardList 
-        cards={movies} 
-        filter={filter}
+        cards={movies}
         isShort={props.isShort} 
         onLike={props.onLike} 
         onUnlike={props.onUnlike}
