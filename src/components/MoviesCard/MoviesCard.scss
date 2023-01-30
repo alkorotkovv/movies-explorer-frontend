@@ -91,6 +91,10 @@
       background-image: url(../images/like_active.svg);
     }
 
+    &_delete {
+      background-image: url(../images/like_delete.svg);
+    }
+
     &:hover {
       cursor: pointer;
       opacity: 0.7;

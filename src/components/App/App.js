@@ -51,11 +51,14 @@ function App() {
         console.log(err);
       })
     }
+    else {
+      history.push("/");
+    }
   }, [loggedIn])
     
   React.useEffect(() => {
     checkToken();
-  }, [])  
+  }, [])
 
   //Функция проверки токена пользователя
   function checkToken() {
@@ -78,7 +81,7 @@ function App() {
             }
           }
           else {
-            history.push("/signin");
+            history.push("/");
           }
         })
         .catch((err) => {
@@ -183,7 +186,7 @@ function App() {
     localStorage.removeItem('isShortSaved');
     localStorage.removeItem('filmsSaved');
     setLoggedIn(false);
-    history.push("/signin");
+    //history.push("/");
   }
 
   //Обработчик сабмита формы поиска фильмов

@@ -36,7 +36,7 @@ const SavedMoviess = React.memo((props) => {
 
   return (
     <main className="movies">
-      <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch} filter={filter} />
+      <SearchForm onSubmit={props.onSubmit} onSwitch={props.onSwitch} filter={""} />
       <MoviesCardList 
         cards={savedMovies} 
         isShort={props.isShort} 
