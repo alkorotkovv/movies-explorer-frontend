@@ -37,6 +37,10 @@ function MoviesCardList(props) {
   //Применяем настройки
   React.useEffect(() => {
     setInitialSettings();
+  }, [])
+
+  React.useEffect(() => {
+    setSettings();
   }, [props.cards, props.isShort])
   
   /*
@@ -57,7 +61,7 @@ function MoviesCardList(props) {
   
   //Функция применения первоначальных настроек
   function setInitialSettings() { 
-    //console.log("применили инит настройки")
+    console.log("применили инит настройки")
 
     if (window.innerWidth > 1300) {
       setCardsCount(DEFAULT_CARDS_COUNT_DESKTOP);
@@ -94,21 +98,57 @@ function MoviesCardList(props) {
     }    
   }
 
+  function setSettings() { 
+    console.log("применили настройки")
+    console.log(cardsCount)
+
+    if (window.innerWidth > 1300) {
+      if (props.isShort) {
+        setNewCards(props.cards.filter(element => element.duration < SHORT_FILM_DURATION).slice(0, cardsCount))
+        //setCardsCount(props.cards.filter(element => element.duration < 40).slice(0, 12).length);
+      }
+      else {
+        setNewCards(props.cards.slice(0, cardsCount))
+        //setCardsCount(props.cards.slice(0, 12).length);
+      }
+    }
+    else if (window.innerWidth > 768) {
+      if (props.isShort) {
+        setNewCards(props.cards.filter(element => element.duration < SHORT_FILM_DURATION).slice(0, cardsCount))
+        //setCardsCount(props.cards.filter(element => element.duration < 40).slice(0, 8).length);
+      }
+      else {
+        setNewCards(props.cards.slice(0, cardsCount))
+        //setCardsCount(props.cards.slice(0, 8).length);
+      }
+    }
+    else {
+      if (props.isShort) {
+        setNewCards(props.cards.filter(element => element.duration < SHORT_FILM_DURATION).slice(0, cardsCount))
+        //setCardsCount(props.cards.filter(element => element.duration < 40).slice(0, 5).length);
+      }
+      else {
+        setNewCards(props.cards.slice(0, cardsCount))
+        //setCardsCount(props.cards.slice(0, 5).length);
+      }
+    }    
+  }
+
   //Функция обработчик клика на кнопку "Ещё"
   //Добавляем либо полный ряд карточек, либо добавляем до полного ряда, если есть хоть 1 карточка в ряду
   function handleMoreClick() {   
     const cardsCount = newCards.length;
     if (window.innerWidth > 1300) {      
       setNewCards(props.cards.slice(0, cardsCount + (ADD_CARDS_COUNT_DESKTOP - cardsCount % ADD_CARDS_COUNT_DESKTOP)))
-      //setCardsCount(cardsCount + (3 - cardsCount%3))
+      setCardsCount(cardsCount + (3 - cardsCount%3))
     }
     else if (window.innerWidth > 768) {
       setNewCards(props.cards.slice(0, cardsCount + (ADD_CARDS_COUNT_PAD - cardsCount % ADD_CARDS_COUNT_PAD)))
-      //setCardsCount(cardsCount + (2 - cardsCount%2))
+      setCardsCount(cardsCount + (2 - cardsCount%2))
     }
     else {
       setNewCards(props.cards.slice(0, cardsCount + ADD_CARDS_COUNT_MOBILE))
-      //setCardsCount(cardsCount + 2)
+      setCardsCount(cardsCount + 2)
     }
     //setClicks(clicks + 1);
   }
