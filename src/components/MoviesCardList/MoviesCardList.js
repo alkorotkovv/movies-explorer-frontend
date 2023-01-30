@@ -11,9 +11,6 @@ import { SHORT_FILM_DURATION,
 
 function MoviesCardList(props) {
 
-  //console.log("рендер кардлист")
-  //console.log(props)
-
   //const [windowSize, setWindowsSize] = React.useState(window.screen.width);
   //Кол-во карточек по умолчанию (для  логики появления кнопки Еще)
   const [cardsCount, setCardsCount] = React.useState(0);
@@ -61,8 +58,6 @@ function MoviesCardList(props) {
   
   //Функция применения первоначальных настроек
   function setInitialSettings() { 
-    console.log("применили инит настройки")
-
     if (window.innerWidth > 1300) {
       setCardsCount(DEFAULT_CARDS_COUNT_DESKTOP);
       if (props.isShort) {
@@ -98,10 +93,8 @@ function MoviesCardList(props) {
     }    
   }
 
+  //Функция применения настроек
   function setSettings() { 
-    console.log("применили настройки")
-    console.log(cardsCount)
-
     if (window.innerWidth > 1300) {
       if (props.isShort) {
         setNewCards(props.cards.filter(element => element.duration < SHORT_FILM_DURATION).slice(0, cardsCount))
