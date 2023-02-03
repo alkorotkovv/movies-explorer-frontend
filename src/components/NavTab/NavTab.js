@@ -1,5 +1,3 @@
-
-
 function NavTab() {
   return (
     <nav className="nav">

@@ -114,6 +114,10 @@ $mainColor: rgb(256, 256, 256);
       font-weight: 500;
     }
 
+    &_unvisible {
+      display: none;
+    }
+
     &:hover {
       cursor: pointer;
       opacity: 0.7;
@@ -177,6 +181,7 @@ $mainColor: rgb(256, 256, 256);
     margin: 0;
     padding: 8px 20px;
     height: 32px;
+    display: flex;
     border: none;
     border-radius: 3px;
     box-sizing: border-box;
@@ -188,6 +193,10 @@ $mainColor: rgb(256, 256, 256);
     line-height: 1.33;
     text-align: center;
     transition: opacity 0.3s linear;
+
+    &_unvisible {
+      display: none;
+    }
 
     &:hover {
       cursor: pointer;
@@ -223,8 +232,7 @@ $mainColor: rgb(256, 256, 256);
         }
       }
 
-    }
-   
+    }   
   
   }
 
@@ -249,6 +257,10 @@ $mainColor: rgb(256, 256, 256);
         width: 40px;
         height: 40px;
       }
+    }
+
+    &_unvisible {
+      display: none;
     }
 
   }
