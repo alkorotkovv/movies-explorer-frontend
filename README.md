@@ -18,6 +18,14 @@
 - SCSS
 - React
 
+## Установка:
+Node.js (v16.16.0)  
+В корне проекта  
+***npm install*** - установка необходимых пакетов  
+***npm start*** - запуск проекта  
+***npm run build*** - сборка в папку build  
+***npm deploy*** - развернуть проект на GH Pages  
+
 ## Ссылка на репозиторий: https://github.com/alkorotkovv/movies-explorer-frontend
 
 ## Ссылка на макет Фигмы: https://disk.yandex.ru/d/SyjYePbhtZRAIg
